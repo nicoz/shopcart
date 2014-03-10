@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<%= raw ERB.new(@static_page.content).result %>
+<%= raw ERB.new(@static_page.content).result(binding) %>
 
 </body>
 </html>

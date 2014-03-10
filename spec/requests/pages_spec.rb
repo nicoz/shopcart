@@ -22,5 +22,11 @@ describe "Pages" do
       visit "/#{static_page.name}"
       expect(page).to have_selector('body', ERB.new(static_page.content).result.to_s.html_safe)
     end
+    
+    it "should show 404 page when the page does not exists" do
+      visit "/nonexistingpage"
+      expect(page).to have_content("Page not found")
+      expect(page.status_code).to eq(404)
+    end
   end
 end
