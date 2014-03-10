@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Shopcart::Application.config.secret_key_base = '4b8083b343f9e7e6096e76be74f9c4302cd4b961b76515f37a51ac589a38a27d47b235096b03f59e1efecd9e7d2bc262eeb6fd9daf42e8c4c4e339d5176d1c7e'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Shopcart::Application.config.secret_key_base = secure_token
