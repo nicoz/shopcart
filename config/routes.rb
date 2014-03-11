@@ -3,10 +3,7 @@ Shopcart::Application.routes.draw do
   get "/422", :to => "errors#unacceptable"
   get "/500", :to => "errors#internal_error"
   
-  get "pages/home"
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
+  get "/installation", to: "configuration#index", as: :start_installation
   # You can have the root of your site routed with "root"
   root 'pages#home'
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Imaginatio Shopcart - <%= @title %></title>
+  <%= stylesheet_link_tag    "administration", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "administration", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="masthead clearfix">
+          <div class="inner">
+            <h3 class="masthead-brand">Imaginatio Shopcart</h3>
+            <ul class="nav masthead-nav">
+              <%= yield :navigation %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="inner cover">
+          <%= yield :body%>
+        </div>
+
+        <div class="mastfoot">
+          <div class="inner">
+            <p>Administration template for Shopcart, by <a href="http://www.imaginatiosoftware.com">@Imaginatio</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

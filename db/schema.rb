@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310140540) do
+ActiveRecord::Schema.define(version: 20140311115540) do
+
+  create_table "application_configurations", force: true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "slogan"
+    t.string   "logo"
+    t.string   "icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "configurations", force: true do |t|
+    t.string   "application_name"
+    t.string   "application_title"
+    t.string   "application_slogan"
+    t.string   "application_logo"
+    t.string   "application_icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "static_pages", force: true do |t|
     t.string   "name"

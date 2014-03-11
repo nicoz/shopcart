@@ -2,21 +2,26 @@ require 'spec_helper'
 require 'erb'
 
 describe "Pages" do
-  describe "Home Page" do
-    it "should have the content 'Home Page'" do
-      visit "/pages/home"
-      expect(page).to have_content("Home Page")
+  describe "Installation" do
+    it "should redirect to installation page if there is no configuration" do
+      ApplicationConfiguration.destroy_all()
+      visit "/"
+      current_path.should == start_installation_path
+      expect(page).to have_title("Imaginatio Shopcart - System Installation")
     end
   end
   
-  describe "Root" do
-    it "should have the same content as Home Page" do
+  
+  describe "Static Pages" do
+    before(:all) do
+      ApplicationConfiguration.create()
+    end
+    
+    it "should have the content 'Home Page'" do
       visit "/"
       expect(page).to have_content("Home Page")
     end
-  end
-  
-  describe "Static Pages" do
+    
     it "should show the content of the page" do
       static_page = StaticPage.create(name: "contact_us", title: "Contact Us", content: "<h1>formulario<%= 2 + 2 %></h1>")
       visit "/#{static_page.name}"
