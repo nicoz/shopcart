@@ -3,11 +3,29 @@ require 'erb'
 
 describe "Pages" do
   describe "Installation" do
-    it "should redirect to installation page if there is no configuration" do
-      ApplicationConfiguration.destroy_all()
-      visit "/"
-      current_path.should == start_installation_path
-      expect(page).to have_title("Imaginatio Shopcart - System Installation")
+    describe "Start installation" do
+      it "should redirect to installation page if there is no configuration" do
+        ApplicationConfiguration.destroy_all()
+        visit "/"
+        current_path.should == start_installation_path
+        expect(page).to have_title("Imaginatio Shopcart - System Installation")
+      end
+      
+      it "should proceed to user creation after clicking 'Get started'" do
+        ApplicationConfiguration.destroy_all()
+        visit "/"
+        find(:xpath, "//a[@href='/installation/user/new']").click
+        expect(page).to have_title("Imaginatio Shopcart - Create Administration User")
+      end
+    end
+    
+    describe "Create administration user page" do
+      it "should ask for User email, password and password confirmation" do
+        visit "/installation/user/new"
+        expect(page).to have_selector("input#email")
+        expect(page).to have_selector("input#password")
+        expect(page).to have_selector("input#confirmation")
+      end
     end
   end
   

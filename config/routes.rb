@@ -3,7 +3,11 @@ Shopcart::Application.routes.draw do
   get "/422", :to => "errors#unacceptable"
   get "/500", :to => "errors#internal_error"
   
+  #installation routes
   get "/installation", to: "configuration#index", as: :start_installation
+  get "installation/user/new", to: "configuration#new_user", as: :installation_step_one
+  get "installation/configuration/new", to: "configuration#new_confguration", as: :installation_step_two
+  
   # You can have the root of your site routed with "root"
   root 'pages#home'
 

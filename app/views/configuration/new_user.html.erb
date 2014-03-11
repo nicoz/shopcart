@@ -1,0 +1,15 @@
+<% content_for :navigation do %>
+  <%= installation_navigation_bar("", "active", "") %>
+<% end %>
+
+<% content_for :body do %>
+
+  <h1 class="cover-heading"><%= @title %></h1>
+  <form class="form-signin" role="form">
+    <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required="required" autofocus="">
+    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="required">
+    <input type="password" name="confirmation" id="confirmation" class="form-control" placeholder="Password Confirmation" required="required">
+    <button class="btn btn-lg btn-default" type="submit">Create User</button>
+  </form>
+
+<% end %>
