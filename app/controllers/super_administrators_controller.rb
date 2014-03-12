@@ -1,0 +1,2 @@
+class SuperAdministratorsController < ApplicationController
+end

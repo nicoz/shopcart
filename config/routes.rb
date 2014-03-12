@@ -11,6 +11,8 @@ Shopcart::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
+  resource "super_administrators", conrtoller: "superAdministrators"
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

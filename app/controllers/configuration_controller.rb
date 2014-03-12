@@ -7,6 +7,7 @@ class ConfigurationController < ApplicationController
   
   def new_user
     @title = "Create Administration User"
+    @superAdministrator = SuperAdministrator.new()
     render layout: "administration"
   end
   
