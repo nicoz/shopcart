@@ -15,4 +15,5 @@
 // Loads all Bootstrap javascripts
 //= require bootstrap
 //= require turbolinks
+//= require_tree .
 

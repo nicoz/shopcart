@@ -5,13 +5,13 @@ Shopcart::Application.routes.draw do
   
   #installation routes
   get "/installation", to: "configuration#index", as: :start_installation
-  get "installation/user/new", to: "configuration#new_user", as: :installation_step_one
-  get "installation/configuration/new", to: "configuration#new_confguration", as: :installation_step_two
+  get "installation/user/new", to:"administrators#new", as: :installation_step_one
+  get "installation/configuration/new", to: "configuration#new", as: :installation_step_two
   
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
-  resource "super_administrators", conrtoller: "superAdministrators"
+  resource :administrators
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
