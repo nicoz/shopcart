@@ -1,3 +1,6 @@
+#this class assist in creating the first user that will be used in the system
+#it purpouse is to help separate the concepts of a normal user creation 
+# that includes adding Roles to it, and other particular data, such as its name, etc.
 class Administrator
   include ActiveModel::Model
   attr_accessor :email, :password, :confirmation
