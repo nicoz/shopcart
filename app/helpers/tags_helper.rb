@@ -46,16 +46,19 @@ module TagsHelper
           
           function validate_#{object.class.name.downcase}_#{attribute}(element) {
             element.next('.alert').remove();
+            element.removeClass('field_with_errors');
             #{presence_of(object, attribute)}
           }
           
           function message_for_#{object.class.name.downcase}_#{attribute}(element, message) {
-            console.log(\"#{attribute} \" + message);
+            //console.log(\"#{attribute} \" + message);
+            element.addClass('field_with_errors');
             element.after(\"<div class='alert alert-danger'><p><strong>#{attribute} </strong>\" + message + \"</p><div>\");
           }
           
           function remove_message_for__#{object.class.name.downcase}_#{attribute}(element) {
             element.next('.alert').remove();
+            element.parent('field_with_errors').remove();
           }
         </script>
       """

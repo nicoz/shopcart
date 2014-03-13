@@ -10,8 +10,11 @@
     <% end %>
     <%= form_for @administrator, :html => { class: "form-signin", role: "form" } do  |form|  %>
       <%= attribute_tag(@administrator, :email, params = {form: form, placeholder: "Email", type: "email", class: "form-control", validations: :all}) %>
+      
       <%= attribute_tag(@administrator, :password, params = {form: form, placeholder: "Password", type: "password", class: "form-control", validations: :all}) %>
+      
       <%= attribute_tag(@administrator, :confirmation, params = {form: form, placeholder: "confirmation", type: "password", class: "form-control", validations: :all}) %>
+      
       <button class="btn btn-lg btn-default" type="submit">Create User</button>
     <% end %>
   </div>
