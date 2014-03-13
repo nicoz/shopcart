@@ -9,9 +9,9 @@
         <%= error_messages("Warning!", "There have been some errors you need to fix.", @administrator) %>
     <% end %>
     <%= form_for @administrator, :html => { class: "form-signin", role: "form" } do  |form|  %>
-      <%= form.email_field :email, class: "form-control", placeholder: "Email address" %>
-      <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
-      <%= form.password_field :confirmation, class: "form-control", placeholder: "Confirmation" %>
+      <%= attribute_tag(@administrator, :email, params = {form: form, placeholder: "Email", type: "email", class: "form-control", validations: :all}) %>
+      <%= attribute_tag(@administrator, :password, params = {form: form, placeholder: "Password", type: "password", class: "form-control", validations: :all}) %>
+      <%= attribute_tag(@administrator, :confirmation, params = {form: form, placeholder: "confirmation", type: "password", class: "form-control", validations: :all}) %>
       <button class="btn btn-lg btn-default" type="submit">Create User</button>
     <% end %>
   </div>

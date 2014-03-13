@@ -14,5 +14,4 @@ clean_errors = ->
   )
   
 remove_parent_class = (object) ->
-  console.log(object)
   object.parent().removeClass("field_with_errors")
