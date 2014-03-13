@@ -1,4 +1,6 @@
 module TagsHelper
+  include ActionView::Helpers::TranslationHelper
+  
   def attribute_tag(object, attribute, params = {})
     result = ""
     if params[:form]
@@ -25,7 +27,7 @@ module TagsHelper
     def validation_script_generator(object, attribute, params)
       raw """
         <script>
-          $('form').on('change', '\##{object.class.name.downcase}_#{attribute}', function() {
+          $('form').on('blur', '\##{object.class.name.downcase}_#{attribute}', function() {
             console.log('change');
             validate_#{object.class.name.downcase}_#{attribute}($(this));
           });
@@ -39,7 +41,17 @@ module TagsHelper
           });
           
           function validate_#{object.class.name.downcase}_#{attribute}(element) {
+            element.next('.alert').remove();
             #{presence_of(object, attribute)}
+          }
+          
+          function message_for_#{object.class.name.downcase}_#{attribute}(element, message) {
+            console.log(\"#{attribute} \" + message);
+            element.after(\"<div class='alert alert-danger'><p><strong>#{attribute} </strong>\" + message + \"</p><div>\");
+          }
+          
+          function remove_message_for__#{object.class.name.downcase}_#{attribute}(element) {
+            element.next('.alert').remove();
           }
         </script>
       """
@@ -47,13 +59,17 @@ module TagsHelper
     
     def presence_of(object, attribute)
       script = ""
-      if object.class._validators[attribute][0].class.to_s.include?('PresenceValidator')
+      validator = object.class._validators[attribute][0]
+      message = I18n.t "errors.messages.blank"
+      if validator.class.to_s.include?('PresenceValidator')
         script += "console.log('Validating presence of #{attribute} ');"
         script += "var value = element.val();"
         
         script += """
           if (value == '' || value == 'undefined') {
-            console.log('error detected on #{attribute}');
+            message_for_#{object.class.name.downcase}_#{attribute}(element, \"#{message} \")
+          } else {
+            remove_message_for__#{object.class.name.downcase}_#{attribute}(element);
           }
         """
       end
