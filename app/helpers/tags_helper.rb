@@ -28,12 +28,16 @@ module TagsHelper
       raw """
         <script>
           $('form').on('blur', '\##{object.class.name.downcase}_#{attribute}', function() {
-            console.log('change');
+            console.log('blur');
             validate_#{object.class.name.downcase}_#{attribute}($(this));
           });
-          $('form').on('keyup', '\##{object.class.name.downcase}_#{attribute}', function() {
+          $('form').on('keyup', '\##{object.class.name.downcase}_#{attribute}', function(e) {
             console.log('keyup');
-            validate_#{object.class.name.downcase}_#{attribute}($(this));
+             var keyCode = e.keyCode || e.which; 
+
+            if (keyCode != 9) { 
+              validate_#{object.class.name.downcase}_#{attribute}($(this));
+            }
           });
           $('\##{object.class.name.downcase}_#{attribute}').bind('paste', function() {
             console.log('paste');
