@@ -3,21 +3,28 @@
 # that includes adding Roles to it, and other particular data, such as its name, etc.
 class Administrator
   include ActiveModel::Model
+  include ActiveModel::AttributeMethods
+  
+  attribute_method_affix  prefix: 'reset_', suffix: '_to_default!'
+  attribute_method_suffix '_contrived?'
+  attribute_method_prefix 'clear_'
+  define_attribute_methods :name, :password, :confirmation
+  
   attr_accessor :email, :password, :confirmation
   
   validates :email, presence: true
   validates :password, presence: true, length: { minimum: 8 }
-  validate :correct_password_sintax
+  validate :password_sintax
   validates :confirmation, presence: true
-  validate :passwords_must_match
+  validate :fields_match
   
-  def passwords_must_match
+  def fields_match
     if password != confirmation
       errors.add(:confirmation, "and Password must match")
     end
   end
   
-  def correct_password_sintax
+  def password_sintax
     splitted = password.split(//)
     has_at_least_one_upcase = false
     has_at_least_one_downcase = false
@@ -34,4 +41,21 @@ class Administrator
     errors.add(:password, "must have at least one number") unless has_at_least_one_number
   end
   
+  def attributes
+    {email: @email, password: @password, confirmation: @confirmation}
+  end
+
+  private
+    #Definition of attributes methods from ActiveRecord
+    def attribute_contrived?(attr)
+      true
+    end
+
+    def clear_attribute(attr)
+      send("#{attr}=", nil)
+    end
+
+    def reset_attribute_to_default!(attr)
+      send("#{attr}=", 'Default Name')
+    end
 end
