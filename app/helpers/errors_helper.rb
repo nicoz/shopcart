@@ -1,6 +1,6 @@
 module ErrorsHelper
   def error_messages(important, message, object)
-    content_tag :div, :class => "alert alert-danger alert-dismissable" do
+    content_tag :div, :class => "alert alert-danger alert-dismissable", :id => "general-alerts" do
       concat content_tag :button, "X", type: "button", 
         class: "close", data: {dismiss: "alert"}, "aria-hidden" => true
       concat content_tag :p, show_message(important, message)

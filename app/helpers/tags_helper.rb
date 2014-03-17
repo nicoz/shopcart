@@ -46,7 +46,6 @@ module TagsHelper
           });
           
           function validate_#{object.class.name.downcase}_#{attribute}(element) {
-            element.next('.alert').remove();
             element.removeClass('field_with_errors');
             var error = false;
             if (test_type == 'all' || test_type == 'nonajax') {
@@ -59,13 +58,15 @@ module TagsHelper
           }
           
           function message_for_#{object.class.name.downcase}_#{attribute}(element, message) {
-            //console.log(\"#{attribute} \" + message);
             element.addClass('field_with_errors');
-            element.after(\"<div class='alert alert-danger'><p><strong>#{attribute} </strong>\" + message + \"</p><div>\");
+            remove_message_for__#{object.class.name.downcase}_#{attribute}(element);
+            var insert = _.bind(element.after, element);
+            _.delay(insert, 200, \"<div class='alert alert-danger'><p><strong>#{attribute} </strong>\" + message + \"</p><div>\" )
           }
           
           function remove_message_for__#{object.class.name.downcase}_#{attribute}(element) {
-            element.next('.alert').remove();
+            element.next('.alert').fadeOut(200, function() { $(this).remove(); });
+            $('#general-alerts').fadeOut(200, function() { $(this).remove(); });
             element.parent('field_with_errors').remove();
           }
         </script>
@@ -80,7 +81,6 @@ module TagsHelper
       end
       message = I18n.t "errors.messages.blank"
       if validator
-        script += "console.log('Validating presence of #{attribute}');"
         script += "var value = element.val();"
         
         script += """
@@ -104,7 +104,6 @@ module TagsHelper
         too_short_message = I18n.t "errors.messages.too_short", count:  minimum
         too_long_message = I18n.t "errors.messages.too_long", count: maximum
 
-        script += "console.log('Validating length of #{attribute} ');"
         script += "var value = element.val().length;"
         if minimum
           script += "var minimum = #{minimum};"
