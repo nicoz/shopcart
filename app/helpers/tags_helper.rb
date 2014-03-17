@@ -29,19 +29,19 @@ module TagsHelper
         <script>
           var test_type = '#{params[:validations].to_s}';
           $('form').on('blur', '\##{object.class.name.downcase}_#{attribute}', function() {
-            console.log('blur');
             validate_#{object.class.name.downcase}_#{attribute}($(this));
           });
-          $('form').on('keyup', '\##{object.class.name.downcase}_#{attribute}', function(e) {
-            console.log('keyup');
+          $('form').on('keyup', '\##{object.class.name.downcase}_#{attribute}', _.debounce(function(e) {
              var keyCode = e.keyCode || e.which; 
 
             if (keyCode != 9) { 
               validate_#{object.class.name.downcase}_#{attribute}($(this));
             }
-          });
+            ;
+        
+            },300)
+          );
           $('\##{object.class.name.downcase}_#{attribute}').bind('paste', function() {
-            console.log('paste');
             validate_#{object.class.name.downcase}_#{attribute}($(this));
           });
           
@@ -126,15 +126,21 @@ module TagsHelper
     
     def ajax_test(object, attribute)
       script = """
+        
         $.ajax({
           url: '/validator/new',
+          type: 'GET',
           data: { 
             class: '#{object.class.name}',
             attribute: '#{attribute}',
-            object: #{object.attributes.to_json}
+            object: {'#{attribute}': element.val()}
+          },
+          beforeSend: remove_message_for__#{object.class.name.downcase}_#{attribute}(element),
+        }).done(function(data) {
+          if (data.message != null) {
+            error = true;
+            message_for_#{object.class.name.downcase}_#{attribute}(element, data.message)
           }
-        }).done(function() {
-          console.log( 'done #{attribute}' );
         });
       """
       script
