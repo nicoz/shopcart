@@ -14,6 +14,7 @@ class Administrator
   attr_accessor :attributes, :email, :password, :confirmation
   
   validates :email, presence: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :password, presence: true, length: { minimum: 8 }
   validate :password_sintax
   validates :confirmation, presence: true
@@ -41,11 +42,13 @@ class Administrator
       has_at_least_one_upcase = false
       has_at_least_one_downcase = false
       has_at_least_one_number = false
-      
+      letters = ("a".."z").to_a + ("A".."Z").to_a
+      numbers = ("0".."9").to_a
       splitted.each do |element|
-        has_at_least_one_upcase = (element.upcase == element and !element.is_a?(Integer)) unless has_at_least_one_upcase
-        has_at_least_one_downcase = (element.downcase == element and !element.is_a?(Integer)) unless has_at_least_one_downcase
-        has_at_least_one_number = ("0".."9").to_a.include?(element) unless has_at_least_one_number
+        
+        has_at_least_one_upcase = (element.upcase == element and letters.include?(element)) unless has_at_least_one_upcase
+        has_at_least_one_downcase = (element.downcase == element and letters.include?(element)) unless has_at_least_one_downcase
+        has_at_least_one_number = numbers.include?(element) unless has_at_least_one_number
       end
       
       errors.add(:password, "must have at least one upcase letter") unless has_at_least_one_upcase

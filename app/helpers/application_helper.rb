@@ -18,7 +18,7 @@ module ApplicationHelper
   
   # Returns the full title on a per-page basis.
   def full_title(page_title)
-    configuration = ApplicationConfiguration.take()
+    configuration = General.take()
     base_title = configuration.nil? ? "Imaginatio Shopcart" : configuration.title
     if page_title.nil? or page_title.empty?
       base_title

@@ -1,19 +1,19 @@
 Shopcart::Application.routes.draw do
-  get "validator/new"
+  post "validator/new"
   get "/404", :to => "errors#not_found"
   get "/422", :to => "errors#unacceptable"
   get "/500", :to => "errors#internal_error"
   
   #installation routes
-  get "/installation", to: "configuration#index", as: :start_installation
+  get "/installation", to: "generals#index", as: :start_installation
   get "installation/user/new", to:"administrators#new", as: :installation_step_one
-  get "installation/configuration/new", to: "configuration#new", as: :installation_step_two
+  get "installation/configuration/new", to: "generals#new", as: :installation_step_two
   
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
   resource :administrators
-  
+  resource 'generals'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

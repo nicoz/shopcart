@@ -1,11 +1,11 @@
-class CreateApplicationConfigurations < ActiveRecord::Migration
+class CreateGenerals < ActiveRecord::Migration
   def change
-    create_table :application_configurations do |t|
+    create_table :generals do |t|
       t.string :name
       t.string :title
       t.string :slogan
-      t.string :logo
       t.string :icon
+      t.string :logo
 
       t.timestamps
     end

@@ -1,0 +1,26 @@
+<% content_for :navigation do %>
+  <%= installation_navigation_bar("", "", "active") %>
+<% end %>
+
+<% content_for :body do %>
+  <div id="system_configuration">
+    <h1 class="cover-heading"><%= @title %></h1>
+    <% if !@general.errors.empty? %>
+        <%= error_messages("Warning!", "There have been some errors you need to fix.", @general) %>
+    <% end %>
+    <p><%= @general.name %></p>
+    <%= form_for @general, action: 'create', :html => { class: "form-signin", role: "form", multipart: true } do  |form|  %>
+      <%= attribute_tag(@general, :name, params = {form: form, placeholder: "Name", type: "text", class: "form-control", validations: :all}) %>
+      
+      <%= attribute_tag(@general, :title, params = {form: form, placeholder: "Title", type: "text", class: "form-control", validations: :all}) %>
+      
+      <%= attribute_tag(@general, :slogan, params = {form: form, placeholder: "Slogan", type: "text", class: "form-control", validations: :all}) %>
+      
+      <%= form.file_field( :logo, accept: 'image/png,image/gif,image/jpeg', data: { attribute: 'logo' }) %>
+      
+      <%= form.file_field( :icon, accept: 'image/png,image/gif,image/jpeg', data: { attribute: 'icon' }) %>
+      
+      <button class="btn btn-lg btn-default" type="submit">Create Configuration</button>
+    <% end %>
+  </div>
+<% end %>
