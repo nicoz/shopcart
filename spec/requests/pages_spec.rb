@@ -5,14 +5,14 @@ describe "Pages" do
   describe "Installation" do
     describe "Start installation" do
       it "should redirect to installation page if there is no configuration" do
-        ApplicationConfiguration.destroy_all()
+        General.destroy_all()
         visit "/"
         current_path.should == start_installation_path
         expect(page).to have_title("Imaginatio Shopcart - System Installation")
       end
       
       it "should proceed to user creation after clicking 'Get started'" do
-        ApplicationConfiguration.destroy_all()
+        General.destroy_all()
         visit "/"
         find(:xpath, "//a[@href='/installation/user/new']").click
         expect(page).to have_title("Imaginatio Shopcart - Create Administration User")
@@ -22,9 +22,9 @@ describe "Pages" do
     describe "Create administration user page" do
       it "should ask for User email, password and password confirmation" do
         visit "/installation/user/new"
-        expect(page).to have_selector("input#email")
-        expect(page).to have_selector("input#password")
-        expect(page).to have_selector("input#confirmation")
+        expect(page).to have_selector("input#administrator_email")
+        expect(page).to have_selector("input#administrator_password")
+        expect(page).to have_selector("input#administrator_confirmation")
       end
     end
   end
@@ -32,12 +32,12 @@ describe "Pages" do
   
   describe "Static Pages" do
     before(:all) do
-      ApplicationConfiguration.create()
+      General.create(name: "test", title: "test", slogan: "testing")
     end
     
-    it "should have the content 'Home Page'" do
+    it "should have the content 'Registrese como usuario'" do
       visit "/"
-      expect(page).to have_content("Home Page")
+      expect(page).to have_content("Registrese como usuario")
     end
     
     it "should show the content of the page" do
@@ -48,7 +48,7 @@ describe "Pages" do
     
     it "should show 404 page when the page does not exists" do
       visit "/nonexistingpage"
-      expect(page).to have_content("Page not found")
+      expect(page).to have_title("Page not found")
       expect(page.status_code).to eq(404)
     end
   end

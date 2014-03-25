@@ -20,6 +20,8 @@ Shopcart::Application.routes.draw do
   resources :users
   resource 'generals'
  
+  get "/signup", to: "users#new", as: :signup
+  
   #FALLBACK ROUTER - STATIC PAGES
   get ":page_name" => "pages#show", as: :static_page
 end

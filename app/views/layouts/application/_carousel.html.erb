@@ -12,9 +12,12 @@
       <img alt="First slide" src="<%= asset_path 'slide1.jpg' %>">
       <div class="container">
         <div class="carousel-caption">
-          <h1>Example headline.</h1>
-          <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-          <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+          <h1>Registrese como usuario</h1>
+          <p>Registrandose como usuario en <%= @configuration.name %> podrá
+            recordar todas sus compras y utilzar beneficios como nuevas 
+            recomendaciones basadas en sus gustos personales.</p>
+          <p><a class="btn btn-lg btn-primary" href="<%= signup_path %>" role="button">Registrese
+           Hoy</a></p>
         </div>
       </div>
     </div>

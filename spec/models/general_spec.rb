@@ -15,5 +15,14 @@
 require 'spec_helper'
 
 describe General do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before { @general = General.new(name: "Example General", title: "Example General",
+    slogan: "Example General") }
+
+  subject { @general }
+  
+  it { should respond_to(:name) }
+  it { should respond_to(:title) }
+  it { should respond_to(:slogan) }
+  it { should respond_to(:icon) }
+  it { should respond_to(:logo) }
 end
