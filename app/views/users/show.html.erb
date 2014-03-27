@@ -1,4 +1,6 @@
-<%= image_tag @user.avatar_url(:big).to_s %>
-<p>
-<%= @user.name %>, <%= @user.email %>
-</p>
+<% content_for :body do %>
+  <%= image_tag @user.avatar_url(:big).to_s %>
+  <p>
+    <%= @user.name %>, <%= @user.email %>
+  </p>
+<% end %>

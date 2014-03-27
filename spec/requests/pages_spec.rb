@@ -32,6 +32,7 @@ describe "Pages" do
   
   describe "Static Pages" do
     before(:all) do
+      General.destroy_all()
       General.create(name: "test", title: "test", slogan: "testing")
     end
     

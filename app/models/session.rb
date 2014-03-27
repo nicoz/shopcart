@@ -23,5 +23,12 @@ class Session
     self.email = self.attributes[:email] if self.attributes[:email]
     self.password = self.attributes[:password] if self.attributes[:password]
   end
+  
+  def save
+    return nil if !self.valid?
+    
+    user = User.find_by(email: self.email.downcase)
+    return user.authenticate(self.password)
+  end
 
 end

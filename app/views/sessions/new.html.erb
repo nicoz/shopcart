@@ -1,9 +1,6 @@
 <% content_for :body do %>
   <div id="new_user">
     <h1 class="cover-heading"><%= @title %></h1>
-    <% if !@session.errors.empty? %>
-      <%= error_messages("Warning!", "There have been some errors you need to fix.", @session) %>
-    <% end %>
     <%= form_for @session, :html => { class: "form-signin", role: "form" } do  |form|  %>
 
       <label for="name">Email</label>

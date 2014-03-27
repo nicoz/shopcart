@@ -11,7 +11,8 @@
 #
 
 class User < ActiveRecord::Base
-  before_save { self.email = email.downcase }
+  before_save { self.email = self.email.downcase }
+  before_create :create_remember_token 
   
   has_secure_password
   
@@ -44,4 +45,17 @@ class User < ActiveRecord::Base
       errors.add(:password, "must have at least one number") unless has_at_least_one_number
     end
   end
+  
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+  
+  def User.hash(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+  
+  private
+    def create_remember_token
+      self.remember_token = User.hash(User.new_remember_token)
+    end
 end
