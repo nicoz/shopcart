@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320005624) do
+ActiveRecord::Schema.define(version: 20140325094453) do
 
   create_table "configurations", force: true do |t|
     t.string   "application_name"
@@ -29,6 +29,21 @@ ActiveRecord::Schema.define(version: 20140320005624) do
     t.string   "slogan"
     t.string   "icon"
     t.string   "logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "service_informations", force: true do |t|
+    t.integer  "service_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", force: true do |t|
+    t.string   "name"
+    t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

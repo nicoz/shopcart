@@ -1,0 +1,10 @@
+<% content_for :navigation do %>
+  <%= installation_navigation_bar("", "active", "") %>
+<% end %>
+
+<% content_for :body do %>
+  <div>
+    <h1>Probando!</h1>
+    <%= create_cart_button( "mc2geek-facilitator@gmail.com", "Coso", 2, "USD", 34.99, true ) %>
+  </div>
+<% end %>

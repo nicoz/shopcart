@@ -11,7 +11,7 @@ Shopcart::Application.routes.draw do
   get "/installation", to: "generals#index", as: :start_installation
   get "installation/user/new", to:"administrators#new", as: :installation_step_one
   get "installation/configuration/new", to: "generals#new", as: :installation_step_two
-  
+
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
