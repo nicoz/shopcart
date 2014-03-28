@@ -11,6 +11,8 @@ feature "Alta de órden de compra" do
     visit "/orden_compra"
     click_link "Tramitar pedido"
 
+    #ingreso de datos
+
     click_button "Pagar"
     #page.should have_content "" #Mensaje de confirmación
   end

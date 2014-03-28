@@ -12,6 +12,12 @@ Shopcart::Application.routes.draw do
   get "installation/user/new", to:"administrators#new", as: :installation_step_one
   get "installation/configuration/new", to: "generals#new", as: :installation_step_two
 
+  #Orden compra
+  get 'orden_compra'      , to: 'orden_compra#index', as: :orden_compra_root
+  get 'orden_compra/index', to: 'orden_compra#index', as: :orden_compra_index
+  get 'orden_compra/new'  , to: 'orden_compra#new'  , as: :orden_compra_new
+  post 'orden_compra/paypal_notification/:id', to: 'orden_compra#paypal_notification', as: :paypal_notification
+
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
@@ -20,7 +26,7 @@ Shopcart::Application.routes.draw do
   resources :users
   resource 'generals'
   resources :sessions, only: [:new, :create, :destroy]
- 
+
   match "/signup", to: "users#new", via: 'get', as: :signup
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

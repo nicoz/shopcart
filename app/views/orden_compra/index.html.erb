@@ -1,3 +1,5 @@
-<div>
-  <%= create_link "Tramitar pedido", "#"
-</div>
+<% content_for :body do %>
+  <div>
+    <%= link_to "Tramitar pedido", orden_compra_new_path %>
+  </div>
+<% end %>
