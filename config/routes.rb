@@ -19,7 +19,12 @@ Shopcart::Application.routes.draw do
   resource :administrators, only: [:index, :new, :create]
   resources :users
   resource 'generals'
+  resources :sessions, only: [:new, :create, :destroy]
  
+  match "/signup", to: "users#new", via: 'get', as: :signup
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  
   #FALLBACK ROUTER - STATIC PAGES
   get ":page_name" => "pages#show", as: :static_page
 end

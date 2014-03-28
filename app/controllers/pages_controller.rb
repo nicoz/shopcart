@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   before_action :set_configuration
   
   def home
+    render layout: "home"
   end
   
   def show

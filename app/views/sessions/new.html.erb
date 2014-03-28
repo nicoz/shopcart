@@ -1,0 +1,17 @@
+<% content_for :body do %>
+  <div id="new_user">
+    <h1 class="cover-heading"><%= @title %></h1>
+    <%= form_for @session, :html => { class: "form-signin", role: "form" } do  |form|  %>
+
+      <label for="name">Email</label>
+      <%= attribute_tag(@session, :email, params = {form: form, placeholder: "Email", type: "text", class: "form-control", validations: :all}) %>
+      
+      <label for="password">Contraseña</label>
+      <%= attribute_tag(@session, :password, params = {form: form, placeholder: "Contraseña", type: "password", class: "form-control", validations: :all}) %>
+  
+      <%= form.submit "Ingresar a la tienda", class: "btn btn-lg btn-primary" %>
+      <p>Aun no tiene usuario? <%= link_to "Registrese Aquí!", signup_path%></p>
+    <% end %>
+    
+  </div>
+<% end %>
