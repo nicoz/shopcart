@@ -10,6 +10,7 @@
       <%= attribute_tag(@session, :password, params = {form: form, placeholder: "Contraseña", type: "password", class: "form-control", validations: :all}) %>
   
       <%= form.submit "Ingresar a la tienda", class: "btn btn-lg btn-primary" %>
+      <p>No puede ingresar? <%= link_to "Olvide mi Contraseña!", reset_path %></p>
       <p>Aun no tiene usuario? <%= link_to "Registrese Aquí!", signup_path%></p>
     <% end %>
     

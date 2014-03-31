@@ -25,7 +25,24 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
   
-
+  def reset
+    if !signed_in?
+      @title = "Olvide mi Contraseña"
+      @session = Session.new()
+    else
+      flash[:warning] = "Esta logeado al sistema."
+      redirect_to root_path
+    end
+  end
+  
+  def send_reset
+    @user = User.find_by(email: params[:session][:email])
+    Rails.logger.info @user.remember_token
+    SessionMailer.reset_password(@user).deliver
+    flash[:info] = "Se envio un email con datos para recuperar su contraseña."
+    redirect_to root_path
+  end
+  
   private
 
     def session_params

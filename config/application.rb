@@ -22,5 +22,7 @@ module Shopcart
     I18n.enforce_available_locales = true
     
     config.exceptions_app = self.routes
+    
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
   end
 end

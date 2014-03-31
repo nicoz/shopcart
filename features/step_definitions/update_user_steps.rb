@@ -1,0 +1,75 @@
+new_name = "New Name" 
+new_email = "new@example.com" 
+old_password = 'Nicolas1'
+new_password = 'Nicolas2'
+
+When(/^he visits the user edit page$/) do
+  click_link("editar")
+end
+
+Then(/^he should see the user edit page$/) do
+  expect(page).to have_content("Editar datos del usuario")
+end
+
+Then(/^the user edit page should have a form with all the relevant inputs$/) do
+  expect(page).to have_selector("form#edit_user")
+end
+
+Then(/^the user edit page should a submit button$/) do
+  expect(page).to have_button("Confirmar")
+end
+
+Then /^he fills incorrect user information$/ do
+  fill_in "user_name", with: ''
+  fill_in "user_email", with: ''
+  click_button ("Confirmar")
+end
+
+Then /^he fills correct user information$/ do
+  fill_in "user_name", with: new_name
+  fill_in "user_email", with: new_email
+  click_button ("Confirmar")
+end
+
+Then /^he should see the errors$/ do
+  expect(page).to have_selector("div.alert.alert-danger.alert-dismissable")
+end
+
+Then(/^he should see the new user information$/) do
+  expect(page).to have_content("Perfil del Usuario")
+  expect(@user.reload.name).to  eq new_name 
+  expect(@user.reload.email).to eq new_email 
+end
+
+Then(/^he should see the user edit password page$/) do
+  expect(page).to have_content("Cambiar Contraseña")
+end
+
+Then(/^the user edit password page should have a form with all the relevant inputs$/) do
+  expect(page).to have_selector("form#edit_user_password")
+end
+
+When(/^he visits the user edit password page$/) do
+  click_link("Cambiar Contraseña")
+end
+
+When(/^he fills incorrect user password information$/) do
+  click_button ("Confirmar")
+end
+
+When(/^he fills incorrect old password information$/) do
+  fill_in "user_old_password", with: ''
+  fill_in "user_password", with: new_password
+  fill_in "user_password_confirmation", with: new_password
+  click_button ("Confirmar")
+end
+
+
+When(/^he fills correct user password information$/) do
+  fill_in "user_old_password", with: old_password  
+  fill_in "user_password", with: new_password
+  fill_in "user_password_confirmation", with: new_password
+  click_button ("Confirmar")
+end
+
+

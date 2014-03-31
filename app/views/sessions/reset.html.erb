@@ -1,0 +1,17 @@
+<% content_for :body do %>
+  <div id="rest_password">
+    <h1 class="cover-heading"><%= @title %></h1>
+    <% if !@session.errors.empty? %>
+      <%= error_messages("Warning!", "There have been some errors you need to fix.", @session) %>
+    <% end %>
+    <%= form_for @session, url: {action: "send_reset"},  :html => { class: "form-signin", role: "form", 
+          id: "reset_user_password" } do  |form|  %>
+      
+      <label for="email">Email</label>
+      <%= attribute_tag(@session, :email, params = {form: form, placeholder: "Email", type: "email", class: "form-control", validations: :nonajax}) %>
+      
+      <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+
+    <% end %>
+  </div>
+<% end %>
