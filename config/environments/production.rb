@@ -77,4 +77,14 @@ Shopcart::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['app22903745@heroku.com'],
+    :password       => ENV['yx0uxod4'],
+    :domain         => 'http://imaginatio-shopcart.herokuapp.com/',
+    :enable_starttls_auto => true
+  }
 end
