@@ -1,5 +1,5 @@
 class SessionMailer < ActionMailer::Base
-  default from: "no-reply@imaginatio-shopcart.herokuapp.comm"
+  default from: "nicolas@imaginatio-shopcart.herokuapp.comm"
   
   def reset_password(user)
     @user = user
