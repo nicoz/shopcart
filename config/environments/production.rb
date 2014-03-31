@@ -84,7 +84,9 @@ Shopcart::Application.configure do
     :authentication => :plain,
     :user_name      => ENV['app22903745@heroku.com'],
     :password       => ENV['yx0uxod4'],
-    :domain         => 'http://imaginatio-shopcart.herokuapp.com/',
+    :domain         => 'imaginatio-shopcart.herokuapp.com',
     :enable_starttls_auto => true
   }
+  
+  config.action_mailer.default_url_options = { host: 'imaginatio-shopcart.herokuapp.com' }
 end
