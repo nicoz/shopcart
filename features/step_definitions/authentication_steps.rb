@@ -15,6 +15,11 @@ Given /^the user has an account$/ do
     password: "Nicolas1", password_confirmation: "Nicolas1")
 end
 
+Given(/^there is another user$/) do
+  @other = User.create(name: "Example User 2", email: "other@email.com", 
+    password: "Nicolas1", password_confirmation: "Nicolas1")
+end
+
 When /^the user submits valid signin information$/ do
   fill_in "session_email", with: @user.email
   fill_in "session_password", with: @user.password
@@ -32,6 +37,11 @@ end
 When (/^he isn't signed in$/) do
   signed_in?
 end
+
+Then(/^he shouldnt be signed in$/) do
+  !signed_in?
+end
+
 
 Given (/^he is signed in$/) do
   visit signin_path

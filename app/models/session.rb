@@ -28,6 +28,9 @@ class Session
     return nil if !self.valid?
     
     user = User.find_by(email: self.email.downcase)
+    
+    return nil if user.nil?
+    
     return user.authenticate(self.password)
   end
 

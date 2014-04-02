@@ -1,0 +1,16 @@
+<div class="col-sm-3 col-md-2 sidebar">
+  <ul class="nav nav-sidebar">
+    <li class="<%= 'active' if active == 'administration' %>"><a href="/administrators">Ultimos pedidos</a></li>
+    <li class="<%= 'active' if active == 'product' %>"><a href="#">Articulos</a></li>
+    <li class="<%= 'active' if active == 'featured' %>"><a href="#">Destacados</a></li>
+    <li class="<%= 'active' if active == 'category' %>"><a href="#">Categorias</a></li>
+  </ul>
+  <ul class="nav nav-sidebar">
+    <li class="<%= 'active' if active == 'sales' %>"><a href="">Ventas</a></li>
+    <li class="<%= 'active' if active == 'stock' %>"><a href="">Stock</a></li>
+    <li class="<%= 'active' if active == 'news' %>"><a href="">Noticias</a></li>
+    <li class="<%= 'active' if active == 'user' %>"><a href="<%= users_path %>">Usuarios</a></li>
+    <li class="<%= 'active' if active == 'mail' %>"><a href="">Publicidad por Mail</a></li>
+    <li class="<%= 'active' if active == 'report' %>"><a href="">Estadisticas</a></li>
+  </ul>
+</div>

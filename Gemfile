@@ -19,8 +19,13 @@ group :test do
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
 end
 
+gem 'faker', '1.1.2'
+
 gem "sass-rails", "~> 4.0.2"
 gem 'bootstrap-sass', '3.1.1'
+
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
 
 gem 'bcrypt-ruby', '3.1.2'
 gem "rmagick"

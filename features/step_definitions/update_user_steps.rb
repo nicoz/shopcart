@@ -53,6 +53,11 @@ When(/^he visits the user edit password page$/) do
   click_link("Cambiar Contraseña")
 end
 
+When(/^he tries to visit the user edit password page$/) do
+  visit edit_password_path(@user)
+end
+
+
 When(/^he fills incorrect user password information$/) do
   click_button ("Confirmar")
 end
@@ -71,5 +76,31 @@ When(/^he fills correct user password information$/) do
   fill_in "user_password_confirmation", with: new_password
   click_button ("Confirmar")
 end
+
+Given(/^an anonymous user$/) do
+  sign_out if signed_in?
+end
+
+When(/^he visits tries to visit the user edit page$/) do
+  @user = User.create(name: "Example User", email: "example@email.com", 
+    password: "Nicolas1", password_confirmation: "Nicolas1")
+  visit edit_user_path(@user)
+end
+
+When(/^he tries to patch the user password data$/) do
+  @user = User.create(name: "Example User", email: "example@email.com", 
+    password: "Nicolas1", password_confirmation: "Nicolas1")
+  sign_out if signed_in?
+  patch reset_password_path(@user)
+end
+
+When(/^he tries to patch the user data$/) do
+  @user = User.create(name: "Example User", email: "example@email.com", 
+    password: "Nicolas1", password_confirmation: "Nicolas1")
+  patch user_path(@user)
+end
+
+
+
 
 

@@ -5,6 +5,9 @@
 # files.
 
 require 'cucumber/rails'
+require 'capybara/cucumber'
+require 'capybara/session'
+
 include SessionsHelper
 
 # Capybara defaults to CSS3 selectors rather than XPath.

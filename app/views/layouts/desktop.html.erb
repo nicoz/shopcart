@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(@title) %></title>
+  <%= stylesheet_link_tag    "desktop", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <style id="holderjs-style" type="text/css"></style>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render partial: "layouts/desktop/header" %>
+  <%= yield :body %>
+  
+  <script>
+    $(document).ready(function()    
+    {
+      var Offset = $('body').offset();
+      $('body').offset(Offset);
+    });
+  </script>
+</body>

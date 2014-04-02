@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
   
+  def is_admin?
+    self.admin
+  end
+  
   private
     def should_validate_password?
       updating_password ||  reseting_password || new_record?

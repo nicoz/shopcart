@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
   
   def create
     @session = Session.new(session_params)
-    user = @session.save
+    user = @session.try(:save)
     if user
       flash[:success] = "Bienvenido a #{@configuration.name}"
       sign_in user
-      redirect_to root_path
+      redirect_back_or root_path
     else
       flash.now[:warning] = "Email y/o contraseña incorrecta."
       @title = "Ingresar"

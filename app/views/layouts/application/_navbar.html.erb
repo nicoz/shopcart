@@ -9,6 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="<%= root_path %>"><%= @configuration.name %></a>
         </div>
@@ -18,15 +19,34 @@
             <li><a href="#about">Quienes somos</a></li>
             <li><a href="#contact">Contactenos</a></li>
             <% if signed_in? %>
+              <% if admin? %>
+                  <li>
+                  <a href="/administrators">
+                     <span class="glyphicon glyphicon-cog"></span>
+                     Administracion
+                  </a>
+                  </li>
+              <% end %>
               <li id="fat-menu" class="dropdown">
+                
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Cuenta <b class="caret"></b>
+                  <%= image_tag current_user.avatar_url(:icon).to_s %> Cuenta <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Perfil", profile_path %></li>
+                  <li>
+                    <a href="<%= profile_path %>">
+                      <% if current_user.avatar? %>
+                        <%= image_tag current_user.avatar_url(:icon).to_s %> Perfil 
+                      <% else %>
+                          <span class="glyphicon glyphicon-user"></span> Perfil
+                      <% end %>
+                    </a>
+                  </li>
                   <li class="divider"></li>
                   <li>
-                    <%= link_to "Cerrar Sesión", signout_path, method: "delete" %>
+                    <a rel="nofollow" href="/signout" data-method="delete">
+                      <span class="glyphicon glyphicon-off"></span> Cerrar Sesión
+                    </a>
                   </li>
                 </ul>
               </li>
