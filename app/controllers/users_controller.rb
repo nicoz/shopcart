@@ -8,7 +8,16 @@ class UsersController < ApplicationController
   before_action :keep_location, only: [:index, :show]
   
   def index
-    @users = User.paginate(page: params[:page])
+    Rails.logger.info '--------------------------------------------------------'
+    Rails.logger.info '--------------------------------------------------------'
+    Rails.logger.info 'User index'
+    Rails.logger.info params[:inactive] != 'on'
+    if !params[:name].nil? and !params[:name].empty?
+      @users = User.where(active: params[:inactive] != 'on').where("LOWER(name) like ?", "%#{params[:name].downcase}%").paginate(page: params[:page])
+    else
+      @users = User.where(active: params[:inactive] != 'on').paginate(page: params[:page])
+    end
+    
     @title = "Administracion de Usuarios"
     render layout: 'desktop'
   end
@@ -89,6 +98,28 @@ class UsersController < ApplicationController
     else
       render 'password_recovery'
     end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:success] = "Usuario eliminado correctamente"
+    else
+      flash[:warning] = "No se pudo eliminar este usuario"
+    end
+    
+    redirect_back_or users_path
+  end
+  
+  def activate
+    @user = User.find(params[:id])
+    if @user.activate
+      flash[:success] = "Usuario activado correctamente"
+    else
+      flash[:warning] = "No se pudo activar este usuario"
+    end
+    
+    redirect_back_or users_path
   end
   
   private

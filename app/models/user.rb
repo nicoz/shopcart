@@ -68,6 +68,20 @@ class User < ActiveRecord::Base
     self.admin
   end
   
+  def destroy
+    self.active = false
+    self.save
+  end
+  
+  def activate
+    if !self.active
+      self.active = true
+      self.save
+    else
+      nil
+    end
+  end
+  
   private
     def should_validate_password?
       updating_password ||  reseting_password || new_record?

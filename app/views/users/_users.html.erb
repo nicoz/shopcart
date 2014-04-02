@@ -28,8 +28,11 @@
             <a href="<%= edit_user_path(user) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
             <a href="#"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-inbox"></span></a>
             <a href="#"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-usd"></span></a>
-            <a href="#"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
-            
+            <% if user.active %>
+              <a data-confirm="Seguro que desea eliminar al usuario?" class="btn btn-default btn-default" data-method="delete" href="<%= user_path(user) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
+            <% else %>
+              <a data-confirm="Seguro que desea activar al usuario?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_user_path(user) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
+            <% end %>
           </td>
         </tr>
       <% end %>

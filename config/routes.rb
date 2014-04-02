@@ -22,6 +22,8 @@ Shopcart::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
  
   match "/signup", to: "users#new", via: 'get', as: :signup
+  match "/user/:id/activate", to: 'users#activate', via: 'patch', as: :activate_user
+  
   match '/signin',  to: 'sessions#new',         via: 'get', as: :signin
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/reset', to: 'sessions#reset', via: 'get', as: :reset
