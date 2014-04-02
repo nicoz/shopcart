@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326143541) do
+ActiveRecord::Schema.define(version: 20140331164543) do
 
   create_table "configurations", force: true do |t|
     t.string   "application_name"
@@ -33,6 +33,28 @@ ActiveRecord::Schema.define(version: 20140326143541) do
     t.datetime "updated_at"
   end
 
+  create_table "orden_compras", force: true do |t|
+    t.float    "total"
+    t.boolean  "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "service_informations", force: true do |t|
+    t.integer  "service_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", force: true do |t|
+    t.string   "name"
+    t.boolean  "enabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "static_pages", force: true do |t|
     t.string   "name"
     t.string   "title"
@@ -49,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140326143541) do
     t.string   "password_digest"
     t.string   "avatar"
     t.string   "remember_token"
+    t.integer  "numero"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
