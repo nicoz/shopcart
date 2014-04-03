@@ -19,8 +19,9 @@ class Administrator
   validate  :password_sintax
   validates :confirmation, presence: true
   validate  :fields_match
-  validates :numero, numericality: { greater_than: 4, less_than: 20, even: true }
-  
+
+  validates :numero, numericality: true #attribute used to test the validations
+
   include ActiveModel::Serialization
 
   def initialize(attributes={})

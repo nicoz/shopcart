@@ -1,24 +1,24 @@
 module TagsHelper
   include ActionView::Helpers::TranslationHelper
 
-  def attribute_tag(object, attribute, params = {})
+  def attribute_tag( object, attribute, params = {} )
     result = ""
 
     if params[:form]
-      result = show_form_field(object, attribute, params)
+      result = show_form_field( object, attribute, params )
     else
-      result = show_field_tag(object, attribute, params)
+      result = show_field_tag( object, attribute, params )
     end
 
     if [:all, :nonajax, :ajax].include? params[:validations]
-      result += validation_script_generator(object, attribute, params)
+      result += validation_script_generator( object, attribute, params )
     else 
       result
     end
   end
 
   private
-    def show_form_field(object, attribute, params)
+    def show_form_field( object, attribute, params )
       raw params[:form].text_field attribute.to_sym, class: params[:class], placeholder: params[:placeholder], type: params[:type], data: { attribute: attribute }
     end
 
@@ -52,12 +52,13 @@ module TagsHelper
 
             if (test_type == 'all' || test_type == 'nonajax') {
               #{presence_of(object, attribute)}
-              if (!error) { #{length_of(object, attribute)} }
-              if (!error) { #{numericality_of(object, attribute)} }
-              if (!error) { #{   inclusion_of(object, attribute)} }
-              if (!error) { #{   exclusion_of(object, attribute)} }
-              if (!error) { #{   absence_of( object, attribute )} }
-              if (!error) { #{    format_of( object, attribute )} }
+              if (!error) { #{confirmation_of( object, attribute )} }
+              if (!error) { #{numericality_of( object, attribute )} }
+              if (!error) { #{   exclusion_of( object, attribute )} }
+              if (!error) { #{   inclusion_of( object, attribute )} }
+              if (!error) { #{     absence_of( object, attribute )} }
+              if (!error) { #{      format_of( object, attribute )} }
+              if (!error) { #{      length_of( object, attribute )} }
             }
 
             if (test_type == 'all' || test_type == 'ajax') {
@@ -102,7 +103,7 @@ module TagsHelper
 
       if validator
         script += "var value = element.val();"
-        
+
         script += """
           if (value == '' || value == 'undefined') {
             #{code_for_error(object, attribute, message)}
@@ -185,49 +186,49 @@ module TagsHelper
 
         if greater_than
           script += """
-            if ( value <= #{greater_than} ) {
+            else if ( value <= #{greater_than} ) {
               #{code_for_error( object, attribute, greater_than_message )}
           """
         end
 
         if greater_than_or_equal_to
           script += """
-            if ( value < #{greater_than_or_equal_to} ) {
+            else if ( value < #{greater_than_or_equal_to} ) {
               #{code_for_error( object, attribute, greater_than_or_equal_to_message )}
           """
         end
 
         if equal_to
           script += """
-            if ( value != #{equal_to} ) {
+            else if ( value != #{equal_to} ) {
               #{code_for_error( object, attribute, equal_to_message )}
           """
         end
 
         if less_than_or_equal_to
           script += """
-            if ( value > #{less_than_or_equal_to} ) {
+            else if ( value > #{less_than_or_equal_to} ) {
               #{code_for_error( object, attribute, less_than_or_equal_to_message )}
           """
         end
 
         if less_than
           script += """
-            if ( value >= #{less_than} ) {
+            else if ( value >= #{less_than} ) {
               #{code_for_error( object, attribute, less_than_message )}
           """
         end
 
         if odd
           script += """
-            if ( value % 2 == 0 ) {
+            else if ( value % 2 == 0 ) {
               #{code_for_error( object, attribute, odd_message )}
           """
         end
 
         if even
           script += """
-            if ( value % 2 != 0 ) {
+            else if ( value % 2 != 0 ) {
               #{code_for_error( object, attribute, even_message )}
           """
         end
@@ -239,7 +240,44 @@ module TagsHelper
     end
 
     def confirmation_of( object, attribute )
-      
+      script = ""
+      validator = nil
+
+      object.class._validators[attribute].each do |v|
+        validator = v if v.class.to_s.include?('ConfirmationValidator')
+      end
+
+      if validator
+        confirmation_message = I18n.t "errors.messages.confirmation"
+
+        script += """
+          var element_id = element.attr( \"id\" );
+          var value = element.val();
+          var confirmation_element = $( \"#\" 
+                                        + element_id 
+                                        + \"_confirmation\"
+          );
+          var confirmation_value   = confirmation_element.val();
+
+          $('form').on( 'blur', '#' + confirmation_element.attr( \"id\" ), function() {
+            validate_#{object.class.name.underscore}_#{attribute}(element);
+          });
+
+          $('form').on('keyup', '#' + confirmation_element.attr( \"id\" ), _.debounce(
+            function(e) {
+              var keyCode = e.keyCode || e.which; 
+              if (keyCode != 9) { 
+                validate_#{object.class.name.underscore}_#{attribute}(element);
+              };
+            },300)
+          );
+
+          if ( value != confirmation_value ) {
+            #{code_for_error( object, attribute, confirmation_message )}
+        """
+      end
+
+      script
     end
 
     def acceptance_of(object, attribute)
