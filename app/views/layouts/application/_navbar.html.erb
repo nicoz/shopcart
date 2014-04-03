@@ -11,7 +11,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<%= root_path %>"><%= @configuration.name %></a>
+          <a class="navbar-brand" href="<%= root_path %>">
+            <%= image_tag @configuration.logo_url(:icon).to_s if @configuration.logo? %>
+
+          </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

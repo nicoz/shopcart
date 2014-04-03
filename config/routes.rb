@@ -18,7 +18,7 @@ Shopcart::Application.routes.draw do
   #RESOURCES
   resources :administrators, only: [:index, :new, :create]
   resources :users
-  resource 'generals'
+  resources :generals
   resources :sessions, only: [:new, :create, :destroy]
  
   match "/signup", to: "users#new", via: 'get', as: :signup
@@ -29,7 +29,7 @@ Shopcart::Application.routes.draw do
   match '/reset', to: 'sessions#reset', via: 'get', as: :reset
   match '/send_reset', to: 'sessions#send_reset', via: 'post'
   
-  
+
   match '/profile', to: "users#profile", via: 'get', as: :profile
   match '/edit_password', to: 'users#edit_password', via: 'get', as: :edit_password
   match '/reset_password', to: 'users#reset', via: 'patch', as: :reset_password
@@ -38,6 +38,8 @@ Shopcart::Application.routes.draw do
   match '/set_recovery_password', to: 'users#set_recovery_password',
     via: 'patch'
     
+  match '/configuration', to: 'generals#show', via: 'get', as: :configuration
+  
   #FALLBACK ROUTER - STATIC PAGES
   get ":page_name" => "pages#show", as: :static_page
 end

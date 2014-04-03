@@ -1,11 +1,9 @@
 # encoding: utf-8
 
-class ImageUploader < CarrierWave::Uploader::Base
+class LogoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
-
+  include CarrierWave::RMagick
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
@@ -47,9 +45,20 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  
   def extension_white_list
     %w(jpg jpeg gif png)
   end
   
+  version :icon do
+    process :resize_to_fill => [100, 50]
+  end
   
+  version :tiny do
+    process :resize_to_fill => [200, 100]
+  end
+  
+  version :big do
+    process :resize_to_fill => [500, 300]
+  end
 end
