@@ -25,7 +25,9 @@ Shopcart::Application.routes.draw do
   resources :administrators, only: [:index, :new, :create]
   resources :users
   resources :generals
-  resources :services
+  resources :services do
+    resources 'service_information'
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
   match "/signup", to: "users#new", via: 'get', as: :signup
@@ -48,6 +50,8 @@ Shopcart::Application.routes.draw do
   match '/configuration', to: 'generals#show', via: 'get', as: :configuration
   
   match "/service/:id/activate", to: 'services#activate', via: 'patch', as: :activate_service
+  
+  match "/services/:service_id/service_information/:id/activate", to: 'service_information#activate', via: 'patch', as: :activate_service_service_information
   
   #FALLBACK ROUTER - STATIC PAGES
   get ":page_name" => "pages#show", as: :static_page

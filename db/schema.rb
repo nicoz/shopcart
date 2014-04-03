@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403180005) do
+ActiveRecord::Schema.define(version: 20140403192434) do
 
   create_table "configurations", force: true do |t|
     t.string   "application_name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140403180005) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",     default: true
   end
 
   create_table "services", force: true do |t|

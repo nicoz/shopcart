@@ -1,0 +1,9 @@
+<label for="key">Clave</label>
+<%= form.hidden_field :service_id %>
+
+<%= attribute_tag(serviceInformation, :key, params = {form: form, placeholder: "Clave", type: "text", class: "form-control", validations: :all}) %>
+
+<label for="value">Valor</label>
+<%= attribute_tag(serviceInformation, :value, params = {form: form, placeholder: "Valor", type: "text", class: "form-control", validations: :all}) %>
+
+<%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>

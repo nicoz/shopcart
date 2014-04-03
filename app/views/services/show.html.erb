@@ -10,6 +10,11 @@
         </p>
         <p><%= link_to "Editar datos", edit_service_path(@service), id: "editar" %></p>
         
+        <h1 class="page-header">Valores</h1>
+        
+        <%= render partial: 'lines_search', locals: { service: @service }%>
+        
+        <%= render partial: 'lines', locals: { lines: @lines, service: @service }%>
       </div>
     </div>
   </div>

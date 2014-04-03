@@ -75,6 +75,13 @@ class ServicesController < ApplicationController
   def show
     @title = 'Detalles del Servicio'
     @service = Service.find(params[:id])
+    
+    if !params[:key].nil? and !params[:key].empty?
+      @lines = ServiceInformation.where(service_id: @service.id).where(active: params[:inactive] != 'on').where("LOWER(key) like ?", "%#{params[:key].downcase}%").paginate(page: params[:page])
+    else
+      @lines = ServiceInformation.where(service_id: @service.id).where(active: params[:inactive] != 'on').paginate(page: params[:page])
+    end
+    
     render layout: 'desktop'
   end
   

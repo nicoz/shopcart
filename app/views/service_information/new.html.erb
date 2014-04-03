@@ -1,0 +1,17 @@
+<% content_for :body do %>
+  <div class="container-fluid">
+    <div class="row">
+      <%= render partial: '/administrators/main_side_bar', locals: { active: 'services' } %>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header"><%= @title %></h1>
+
+        <% if !@serviceInformation.errors.empty? %>
+          <%= error_messages("Warning!", "There have been some errors you need to fix.", @service) %>
+        <% end %>
+        <%= form_for @serviceInformation, url: {controller: 'service_information', action: 'create'}, :html => { class: "form-signin", role: "form" } do  |form|  %>
+          <%= render partial: 'form_fields', locals: {serviceInformation: @serviceInformation, form: form } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
