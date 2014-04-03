@@ -1,0 +1,41 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <% if @configuration.logo? %>
+        <a class="navbar-brand" href="<%= root_path %>"><%= image_tag @configuration.logo_url(:icon).to_s %></a>
+        
+      <% else %>
+        <a class="navbar-brand" href="<%= root_path %>"><%= @configuration.title %></a>
+      <% end %>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/administrators">
+           <span class="glyphicon glyphicon-cog"></span>
+           Administracion
+          </a>
+        <li>
+          <a href="<%= profile_path %>">
+            <% if current_user.avatar? %>
+              <%= image_tag current_user.avatar_url(:icon).to_s %> Perfil 
+            <% else %>
+                <span class="glyphicon glyphicon-user"></span> Perfil
+            <% end %>
+          </a>
+        </li>
+        <li>
+          <a rel="nofollow" href="/signout" data-method="delete">
+            <span class="glyphicon glyphicon-off"></span> Cerrar Sesión
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

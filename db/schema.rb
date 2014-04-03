@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327175555) do
+ActiveRecord::Schema.define(version: 20140403180005) do
 
   create_table "configurations", force: true do |t|
     t.string   "application_name"
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20140327175555) do
 
   create_table "services", force: true do |t|
     t.string   "name"
-    t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",     default: true
   end
 
   create_table "static_pages", force: true do |t|
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20140327175555) do
     t.string   "password_digest"
     t.string   "avatar"
     t.string   "remember_token"
+    t.boolean  "admin",           default: false
+    t.boolean  "active",          default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

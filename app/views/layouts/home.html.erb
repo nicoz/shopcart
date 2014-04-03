@@ -23,5 +23,13 @@
 
     </div><!-- /.container -->
     <%= render partial: "layouts/application/footer" %>
+    
+    <script>
+      $(document).ready(function()    
+      {
+        var Offset = $('body').offset();
+        $('body').offset(Offset);
+      });
+    </script>
 </body>
 </html>

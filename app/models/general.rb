@@ -15,8 +15,8 @@
 class General < ActiveRecord::Base
   #attr_accessor :name, :title, :slogan, :logo, :icon
    
-  mount_uploader :logo, ImageUploader
-  mount_uploader :icon, ImageUploader
+  mount_uploader :logo, LogoUploader
+  mount_uploader :icon, LogoUploader
   
   validates :name, presence: true
   validates :title, presence: true

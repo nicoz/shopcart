@@ -22,9 +22,9 @@ describe "Pages" do
     describe "Create administration user page" do
       it "should ask for User email, password and password confirmation" do
         visit "/installation/user/new"
-        expect(page).to have_selector("input#administrator_email")
-        expect(page).to have_selector("input#administrator_password")
-        expect(page).to have_selector("input#administrator_confirmation")
+        expect(page).to have_selector("input#user_email")
+        expect(page).to have_selector("input#user_password")
+        expect(page).to have_selector("input#user_password_confirmation")
       end
     end
   end

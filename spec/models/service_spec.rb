@@ -4,9 +4,9 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
-#  enabled    :boolean
 #  created_at :datetime
 #  updated_at :datetime
+#  active     :boolean          default(TRUE)
 #
 
 require 'spec_helper'

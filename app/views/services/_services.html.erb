@@ -1,0 +1,42 @@
+
+<%= will_paginate %>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% services.each do |service| %>
+        <tr>          
+          <td> 
+            <%= service.id %>
+          </td>
+          <td><%= service.name %></td>
+          <td>
+            <a href="<%= service_path(service) %>" class="btn btn-default btn-default"><span class="glyphicon glyphicon-search"></span></a>
+            <a href="<%= edit_service_path(service) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+            <% if service.active %>
+              <a data-confirm="Seguro que desea eliminar el servicio?" class="btn btn-default btn-default" data-method="delete" href="<%= service_path(service) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
+            <% else %>
+              <a data-confirm="Seguro que desea activar el servicio?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_service_path(service) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate %>
+
+<script>
+  $("div.pagination ul").addClass('pagination');
+  
+  $('.previous_page > a').html("Previo");
+  $('.next_page > a').html("Proximo");
+</script>

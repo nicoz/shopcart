@@ -1,4 +1,5 @@
 require 'spec_helper'
+include ApplicationHelper
 
 describe "User pages" do
 
@@ -12,10 +13,16 @@ describe "User pages" do
   
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
+    before do
+      visit signin_path
+      fill_in "session_email", with: user.email
+      fill_in "session_password", with: user.password
+      click_button "Ingresar a la tienda"
+      visit user_path(user)
+    end
 
     #it { should have_content("#{user.name}, #{user.email}") }
-    it { should have_title(user.name) }
+    it { should have_title(full_title(user.name)) }
   end
   
   describe "signup" do

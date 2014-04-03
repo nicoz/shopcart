@@ -1,0 +1,50 @@
+
+<%= will_paginate %>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>          
+          <td> 
+            <% if user.avatar? %>
+              <%= image_tag user.avatar_url(:icon).to_s %> 
+            <% else %>
+                <span class="glyphicon glyphicon-user"></span>
+            <% end %>
+          </td>
+          <td><%=user.name %></td>
+          <td><%=user.email %></td>
+          <td>
+            <a href="<%= user_path(user) %>" class="btn btn-default btn-default"><span class="glyphicon glyphicon-search"></span></a>
+            <a href="<%= edit_user_path(user) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-inbox"></span></a>
+            <a href="#"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-usd"></span></a>
+            <% if user.active %>
+              <a data-confirm="Seguro que desea eliminar al usuario?" class="btn btn-default btn-default" data-method="delete" href="<%= user_path(user) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
+            <% else %>
+              <a data-confirm="Seguro que desea activar al usuario?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_user_path(user) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate %>
+
+<script>
+  $("div.pagination ul").addClass('pagination');
+  
+  $('.previous_page > a').html("Previo");
+  $('.next_page > a').html("Proximo");
+</script>

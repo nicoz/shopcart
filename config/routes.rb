@@ -22,14 +22,32 @@ Shopcart::Application.routes.draw do
   root 'pages#home'
 
   #RESOURCES
-  resource :administrators, only: [:index, :new, :create]
+  resources :administrators, only: [:index, :new, :create]
   resources :users
-  resource 'generals'
+  resources :generals
+  resources :services
   resources :sessions, only: [:new, :create, :destroy]
 
   match "/signup", to: "users#new", via: 'get', as: :signup
-  match '/signin',  to: 'sessions#new',         via: 'get'
+  match "/user/:id/activate", to: 'users#activate', via: 'patch', as: :activate_user
+  
+  match '/signin',  to: 'sessions#new',         via: 'get', as: :signin
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/reset', to: 'sessions#reset', via: 'get', as: :reset
+  match '/send_reset', to: 'sessions#send_reset', via: 'post'
+  
+
+  match '/profile', to: "users#profile", via: 'get', as: :profile
+  match '/edit_password', to: 'users#edit_password', via: 'get', as: :edit_password
+  match '/reset_password', to: 'users#reset', via: 'patch', as: :reset_password
+  match '/password_recovery/:remember_token', to: 'users#password_recovery',
+    via: 'get', as: :password_recovery
+  match '/set_recovery_password', to: 'users#set_recovery_password',
+    via: 'patch'
+    
+  match '/configuration', to: 'generals#show', via: 'get', as: :configuration
+  
+  match "/service/:id/activate", to: 'services#activate', via: 'patch', as: :activate_service
   
   #FALLBACK ROUTER - STATIC PAGES
   get ":page_name" => "pages#show", as: :static_page

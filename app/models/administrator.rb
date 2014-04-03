@@ -11,23 +11,25 @@ class Administrator
   attribute_method_prefix 'clear_'
   #define_attribute_methods :name, :password, :confirmation
   
-  attr_accessor :attributes, :email, :password, :confirmation
+  attr_accessor :attributes, :email, :password, :confirmation, :numero
   
   validates :email, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :password, presence: true, length: { minimum: 8 }
-  validate :password_sintax
+  validate  :password_sintax
   validates :confirmation, presence: true
-  validate :fields_match
-  
+  validate  :fields_match
+
+  validates :numero, numericality: true #attribute used to test the validations
+
   include ActiveModel::Serialization
- 
- 
+
   def initialize(attributes={})
-    self.attributes = attributes
-    self.email = self.attributes[:email] if self.attributes[:email]
-    self.password = self.attributes[:password] if self.attributes[:password]
+    self.attributes   = attributes
+    self.email        = self.attributes[:email]        if self.attributes[:email]
+    self.password     = self.attributes[:password]     if self.attributes[:password]
     self.confirmation = self.attributes[:confirmation] if self.attributes[:confirmation]
+    self.numero       = self.attributes[:numero]       if self.attributes[:numero]
   end
 
   def fields_match
@@ -51,9 +53,9 @@ class Administrator
         has_at_least_one_number = numbers.include?(element) unless has_at_least_one_number
       end
       
-      errors.add(:password, "must have at least one upcase letter") unless has_at_least_one_upcase
+      errors.add(:password, "must have at least one upcase letter")   unless has_at_least_one_upcase
       errors.add(:password, "must have at least one downcase letter") unless has_at_least_one_downcase
-      errors.add(:password, "must have at least one number") unless has_at_least_one_number
+      errors.add(:password, "must have at least one number")          unless has_at_least_one_number
     end
   end
 

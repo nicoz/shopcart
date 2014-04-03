@@ -48,4 +48,51 @@ describe "Authentication" do
       end
     end
   end
+  
+  describe "authorization" do
+
+    describe "for non-signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+
+      describe "in the Users controller" do
+
+        describe "visiting the edit page" do
+          before { visit edit_user_path(user) }
+          it { should have_title( full_title('Ingresar') ) }
+        end
+
+        describe "submitting to the update action" do
+          before { patch user_path(user) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+        
+        describe "visiting the password edit page" do
+          before { visit edit_password_path}
+          it { should have_title( full_title('Ingresar') ) }
+        end
+
+        describe "submitting to the password update action" do
+          before { patch reset_password_path(user) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+        
+
+        describe "when attempting to visit a protected page" do
+          before do
+            visit edit_user_path(user)
+            fill_in "session_email",    with: user.email
+            fill_in "session_password", with: user.password
+            click_button "Ingresar a la tienda"
+          end
+
+          describe "after signing in" do
+
+            it "should render the desired protected page" do
+              expect(page).to have_title( full_title('Editar datos del usuario') )
+            end
+          end
+        end
+      end
+    end
+  end
 end

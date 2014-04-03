@@ -1,5 +1,10 @@
 class GeneralsController < ApplicationController
-
+  before_action :signed_in_user, only: [:show, :index, :edit, :update, :edit_password, :reset, :profile]
+    
+  before_action :is_admin, only: [:show, :edit, :update]
+  
+  before_action :keep_location, only: [:show]
+  
   def index
     @title = "System Installation"
     render layout: "administration"
@@ -20,6 +25,28 @@ class GeneralsController < ApplicationController
       @title = "Create System Configuration"
       render 'new', layout: "administration"
     end
+  end
+  
+  def show
+    @title = "Configuracion del sistema"
+    @general = General.take
+    
+    render layout: 'desktop'
+  end
+  
+  def edit
+    @title = "Editar la configuracion del sistema"
+    @general = General.take
+  end
+  
+  def update
+    @general = General.find(params[:id])
+    if @general.update_attributes(configuration_params)
+      flash[:success] = "Configuracion modificada correctamente"
+      redirect_back_or profile_path
+    else
+      render 'edit'
+    end 
   end
   
   private

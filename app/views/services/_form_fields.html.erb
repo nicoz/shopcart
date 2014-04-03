@@ -1,0 +1,4 @@
+<label for="name">Nombre</label>
+<%= attribute_tag(service, :name, params = {form: form, placeholder: "Nombre", type: "text", class: "form-control", validations: :all}) %>
+
+<%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>

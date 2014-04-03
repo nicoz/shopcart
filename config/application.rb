@@ -22,5 +22,7 @@ module Shopcart
     I18n.enforce_available_locales = true
     
     config.exceptions_app = self.routes
+    
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

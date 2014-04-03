@@ -5,15 +5,15 @@
 <% content_for :body do %>
   <div id="new_administrator">
     <h1 class="cover-heading"><%= @title %></h1>
-    <% if !@administrator.errors.empty? %>
-        <%= error_messages("Warning!", "There have been some errors you need to fix.", @administrator) %>
+    <% if !@user.errors.empty? %>
+        <%= error_messages("Warning!", "There have been some errors you need to fix.", @user) %>
     <% end %>
-    <%= form_for @administrator, :html => { class: "form-signin", role: "form" } do  |form|  %>
-      <%= attribute_tag(@administrator, :email, params = {form: form, placeholder: "Email", type: "email", class: "form-control", validations: :all}) %>
+    <%= form_for @user, url: { controller: 'administrators', action: 'create'}, :html => { class: "form-signin", role: "form" } do  |form|  %>
+      <%= attribute_tag(@user, :email, params = {form: form, placeholder: "Email", type: "email", class: "form-control", validations: :all}) %>
       
-      <%= attribute_tag(@administrator, :password, params = {form: form, placeholder: "Password", type: "password", class: "form-control", validations: :all}) %>
+      <%= attribute_tag(@user, :password, params = {form: form, placeholder: "Password", type: "password", class: "form-control", validations: :all}) %>
       
-      <%= attribute_tag(@administrator, :confirmation, params = {form: form, placeholder: "confirmation", type: "password", class: "form-control", validations: :all}) %>
+      <%= attribute_tag(@user, :password_confirmation, params = {form: form, placeholder: "confirmation", type: "password", class: "form-control", validations: :all}) %>
       
       <button class="btn btn-lg btn-default" type="submit">Create User</button>
     <% end %>

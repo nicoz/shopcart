@@ -1,0 +1,25 @@
+<% content_for :body do %>
+  <div id="edit_user">
+    <h1 class="cover-heading"><%= @title %></h1>
+    <% if !@user.errors.empty? %>
+      <%= error_messages("Warning!", "There have been some errors you need to fix.", @user) %>
+    <% end %>
+    <%= form_for @user, :html => { class: "form-signin", role: "form", 
+          id: "edit_user" } do  |form|  %>
+      
+      <label for="name">Nombre</label>
+      <%= attribute_tag(@user, :name, params = {form: form, placeholder: "Nombre", type: "text", class: "form-control", validations: :all}) %>
+      
+      <label for="email">Email</label>
+      <%= attribute_tag(@user, :email, params = {form: form, placeholder: "Email", type: "email", class: "form-control", validations: :all}) %>
+      
+      <label for="avatar">Avatar</label>
+      <p><%= image_tag @user.avatar_url(:small).to_s %></p>
+      <%= form.file_field :avatar %>
+      
+      
+      <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+
+    <% end %>
+  </div>
+<% end %>

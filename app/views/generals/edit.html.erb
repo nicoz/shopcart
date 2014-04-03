@@ -1,0 +1,31 @@
+<% content_for :body do %>
+  <div id="edit_general">
+    <h1 class="cover-heading"><%= @title %></h1>
+    <% if !@general.errors.empty? %>
+      <%= error_messages("Warning!", "There have been some errors you need to fix.", @user) %>
+    <% end %>
+    <%= form_for @general, :html => { class: "form-signin", role: "form", 
+          id: "edit_general" } do  |form|  %>
+      
+      <label for="logo">Logo</label>
+      <p><%= image_tag @general.logo_url(:tiny).to_s %></p>
+      <%= form.file_field :logo %>
+      
+      <label for="icon">Icono</label>
+      <p><%= image_tag @general.icon_url(:icon).to_s %></p>
+      <%= form.file_field :icon %>
+      
+      <label for="name">Nombre</label>
+      <%= attribute_tag(@general, :name, params = {form: form, placeholder: "Nombre", type: "text", class: "form-control", validations: :all}) %>
+      
+      <label for="titel">Titulo</label>
+      <%= attribute_tag(@general, :title, params = {form: form, placeholder: "Titulo", type: "text", class: "form-control", validations: :all}) %>
+      
+      <label for="slogan">Slogan</label>
+      <%= attribute_tag(@general, :slogan, params = {form: form, placeholder: "Slogan", type: "text", class: "form-control", validations: :all}) %>
+      
+      <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+
+    <% end %>
+  </div>
+<% end %>

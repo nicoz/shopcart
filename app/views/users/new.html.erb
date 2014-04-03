@@ -17,7 +17,7 @@
       
       <label for="password_confirmation">Confirmacion</label>
       <%= attribute_tag(@user, :password_confirmation, params = {form: form, placeholder: "Confirmacion", type: "password", class: "form-control", validations: :all}) %>
-      
+
       <%= form.submit "Crear mi cuenta", class: "btn btn-lg btn-primary" %>
 
     <% end %>
