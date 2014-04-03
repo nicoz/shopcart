@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20140402132316) do
 
+  create_table "configurations", force: true do |t|
+    t.string   "application_name"
+    t.string   "application_title"
+    t.string   "application_slogan"
+    t.string   "application_logo"
+    t.string   "application_icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "generals", force: true do |t|
     t.string   "name"
     t.string   "title"
