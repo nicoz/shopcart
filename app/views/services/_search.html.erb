@@ -13,6 +13,14 @@
 
 <hr />
 
-<%= link_to new_service_path, class: "btn btn-lg btn-primary" do %>
-  <span class="glyphicon glyphicon-plus"></span> Crear Servicio
-<% end %>
+
+
+<div class="row">
+  <div class="col-md-2">
+    <%= link_to new_service_path, class: "btn btn-lg btn-primary" do %>
+      <span class="glyphicon glyphicon-plus"></span> Crear Servicio
+    <% end %>
+  </div>
+  <%= render partial: '/shared/back', locals: {path: administrators_path} %>
+</div>
+

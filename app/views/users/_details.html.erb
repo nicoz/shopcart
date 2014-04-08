@@ -1,0 +1,34 @@
+<div class="row main">
+  <% if user.avatar? %>
+    <div class="col-md-4 avatar">
+      <%= image_tag user.avatar_url(:big).to_s %>
+    </div>
+  <% end %> 
+  <div class="col-md-4">
+    <p>
+      <span><strong>Nombre: </strong><%= user.name %></span>
+    </p>
+    <p>
+      <span><strong>Email: </strong><%= user.email %></span>
+    </p>
+  </div>
+</div>
+
+
+<div class="row">
+  <% if current_user?(user) %>
+    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 ">
+      <%= link_to edit_user_path(user), class: "btn btn-lg btn-default",
+        id: "editar" do %>
+        <span class="glyphicon glyphicon-pencil"></span> Editar datos
+      <% end %>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+      <%= link_to edit_password_path, class: "btn btn-lg btn-warning",
+        id: "edit_password" do %>
+        <span class="glyphicon glyphicon-eye-open"></span> Editar clave
+      <% end %>
+    </div>
+  <% end %>
+  <%= render partial: '/shared/back', locals: {path: users_path } %>
+</div>

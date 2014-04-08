@@ -5,6 +5,12 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= social_scripts %>
+
+  <%= render partial: '/shared/google_session_handler' %>
+  <%= render partial: '/shared/facebook_session_handler' %>
+  <%= render partial: '/shared/twitter_session_handler' %>
+  
 </head>
 <body>
 

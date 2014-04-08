@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403192434) do
+ActiveRecord::Schema.define(version: 20140407192245) do
 
   create_table "configurations", force: true do |t|
     t.string   "application_name"
@@ -53,7 +53,20 @@ ActiveRecord::Schema.define(version: 20140403192434) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",     default: true
+    t.boolean  "active",       default: true
+    t.string   "service_type"
+  end
+
+  create_table "social_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "service_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "social_id"
+    t.string   "social_name"
+    t.string   "social_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "static_pages", force: true do |t|

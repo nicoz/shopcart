@@ -1,3 +1,4 @@
+
 <label for="key">Clave</label>
 <%= form.hidden_field :service_id %>
 
@@ -6,4 +7,9 @@
 <label for="value">Valor</label>
 <%= attribute_tag(serviceInformation, :value, params = {form: form, placeholder: "Valor", type: "text", class: "form-control", validations: :all}) %>
 
-<%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+<div class="row">
+  <div class="col-md-5">
+    <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= render partial: '/shared/back', locals: {path: ''} %>
+</div>

@@ -1,25 +1,16 @@
-<% content_for :body do %>
-  <div class="container-fluid">
-    <div class="row">
-      <%= render partial: '/administrators/main_side_bar', locals: { active: 'services' } %>
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header"><%= @title %></h1>
-
-        <p>
-          <%= @service.name %>
-        </p>
-        <p><%= link_to "Editar datos", edit_service_path(@service), id: "editar" %></p>
-        
-        <h1 class="page-header">Valores</h1>
-        
-        <%= render partial: 'lines_search', locals: { service: @service }%>
-        
-        <%= render partial: 'lines', locals: { lines: @lines, service: @service }%>
-      </div>
-    </div>
-  </div>
-<% end %>
+<% provide(:title, @title ) %>
+<% provide(:active, 'services' ) %>
 
 <% content_for :body do %>
+
+  <%= render partial: 'details', locals: { service: @service } %>
   
+  <h1 class="page-header">Valores</h1>
+  
+  <%= render partial: 'lines_search', locals: { service: @service }%>
+  
+  <%= render partial: 'lines', locals: { lines: @lines, service: @service }%>
+    
 <% end %>
+
+

@@ -6,6 +6,13 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= social_scripts %>
+
+  <%= render partial: '/shared/google_session_handler' %>
+  <%= render partial: '/shared/facebook_session_handler' %>
+  <%= render partial: '/shared/twitter_session_handler' %>
+  
+
 </head>
 <body>
 
@@ -21,6 +28,7 @@
       <%= yield %>
     
 
+    
     </div><!-- /.container -->
     <%= render partial: "layouts/application/footer" %>
     
@@ -31,5 +39,6 @@
         $('body').offset(Offset);
       });
     </script>
+
 </body>
 </html>

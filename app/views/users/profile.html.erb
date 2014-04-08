@@ -1,10 +1,6 @@
-<% provide(:title, @title ) %>
-<% provide(:active, 'user' ) %>
-
 <% content_for :body do %>
+  <h1><%= @title %></h1>
+  
   <%= render partial: 'details', locals: {user: @user}%>
+
 <% end %>
-      
-
-
-

@@ -1,8 +1,15 @@
 class SessionsController < ApplicationController
   
   def new
-    @session = Session.new()
-    @title = "Ingresar"
+    unless signed_in?
+      @session = Session.new()
+      
+      @services = Service.where(active: true).where("service_type in ('Todo', 'Login')")
+
+      @title = "Ingresar"
+    end
+    
+    redirect_back_or root_path if signed_in?
   end
   
   
@@ -25,6 +32,11 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
   
+  def ajax_destroy
+    sign_out
+    render json: {message: 'ok'}
+  end
+  
   def reset
     if !signed_in?
       @title = "Olvide mi Contraseña"
@@ -43,10 +55,20 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
   
+  def social_login
+    
+    @session = Session.new(session_params)
+    user = @session.try(:save)
+    if user
+      social_sign_in user
+      render json: user.to_json
+    end
+  end
+  
   private
 
     def session_params
-      params.require(:session).permit(:email, :password)
+      params.require(:session).permit(:email, :password, :name, :social_id , :service_id, :social_name, :social_token)
     end
   
 end

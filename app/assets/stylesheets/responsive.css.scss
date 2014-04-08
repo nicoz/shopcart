@@ -1,0 +1,62 @@
+/* RESPONSIVE */
+
+.avatar {
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1101px) {
+  .btn-lg {
+    padding: 10px 6px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  .navbar-brand {
+    padding: 0px 15px !important;
+  }
+  
+  .avatar {
+    margin-bottom: 10px;
+  }
+  
+  .btn-lg {
+    padding: 10px 16px;
+  }
+  
+
+}
+
+@media only screen and (max-width: 650px) {
+  .btn-lg {
+    padding: 10px 8px;
+  }
+}
+
+@media only screen and (max-width: 571px) {
+  .btn-lg {
+    padding: 10px 4px;
+    font-size: 16px
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .btn-lg {
+    padding: 10px 4px;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 434px) {
+  .col-xs-3 {
+    width: 30%;
+  }
+  
+}
+
+@media only screen and (max-width: 370px) {
+  .col-xs-3 {
+    width: 33%;
+  }
+  
+}

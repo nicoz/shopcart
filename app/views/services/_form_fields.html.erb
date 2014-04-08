@@ -1,4 +1,12 @@
 <label for="name">Nombre</label>
 <%= attribute_tag(service, :name, params = {form: form, placeholder: "Nombre", type: "text", class: "form-control", validations: :all}) %>
 
-<%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+<label for="service_type">Tipo</label>
+<%= form.select(:service_type, ["Todo", "Login", "Social", "Facturacion"], {include_blank: true}, class: "form-control") %>
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= render partial: '/shared/back', locals: {path: ''} %>
+</div>

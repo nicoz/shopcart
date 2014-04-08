@@ -1,0 +1,58 @@
+<% if current_social_user %>
+  <script>
+   function onLoadCallback() {
+    
+      gapi.auth.authorize(
+        {client_id: "1002150001204-30q95l90hh58t30ld75hcekbvq0a4f46.apps.googleusercontent.com",
+        immediate: true, scope: 'https://www.googleapis.com/auth/plus.login'}, 
+        function(resp){
+          console.log('authenticated');
+          gapi.client.load('plus','v1', function(){
+            var request = gapi.client.plus.people.get({
+             'userId': 'me'
+            });
+            
+            request.execute(function(resp) {
+              if ( <%= current_social_user.social_id %> == resp.id ) {
+                console.log("Login Correcto");
+              } else {
+                console.log(resp);
+                if ( resp.id != undefined ) {
+                  data = { session: {
+                    name: resp.displayName,
+                    social_name: resp.displayName,
+                    social_id: resp.id,
+                    service_id: '<%= current_social_user.service.id.to_s %>',
+                    social_token: gapi.auth.getToken().access_token
+                  }
+                  };
+                  $.ajax({
+                   url: '<%= social_login_path.to_s %>',
+                   data: data,
+                   type: 'post',
+                   success: function(data) {
+                     location.reload();
+                   },
+                   error: function(data) {
+                     console.log('ups');
+                   }
+                  });
+                } else {
+                  $.ajax({
+                   url: '<%= ajax_signout_path.to_s %>',
+                   type: 'delete',
+                   success: function(data) {
+                     location.reload();
+                   },
+                   error: function(data) {
+                     console.log('ups');
+                   }
+                  });
+                }
+              }
+            });
+          });
+        }
+      )};
+  </script>
+<% end %> 

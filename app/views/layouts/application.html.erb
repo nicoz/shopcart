@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article">
 <html>
 <head>
   <title><%= full_title(@title) %></title>
@@ -6,11 +7,19 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= social_scripts %>
+  <%= render partial: '/shared/google_session_handler' %>
+  <%= render partial: '/shared/facebook_session_handler' %>
+  <%= render partial: '/shared/twitter_session_handler' %>
+  
+  <%= yield :head %>
 </head>
 <body>
 
 <body style="">
     
+
+
     <%= render partial: "layouts/application/navbar" %>
 
 

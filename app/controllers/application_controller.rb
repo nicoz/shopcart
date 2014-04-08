@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def back
+    redirect_back_or root_path
+  end
+  
   # Before filters
   def keep_location
     store_location
@@ -32,8 +36,10 @@ class ApplicationController < ActionController::Base
     Rails.logger.info '---------------------------------------------------------'
     Rails.logger.info "Correct User filter"
     @user = User.find(params[:id])
-    redirect_to root_path, 
-      notice: "Esta intentado acceder a informacion privada de otro usuario" unless current_user?(@user) or current_user.is_admin?
+    unless current_user?(@user)
+      flash[:notice] = "Esta intentado acceder a informacion privada de otro usuario"
+      redirect_back_or root_path
+    end
   end
   
   def is_admin
@@ -41,7 +47,7 @@ class ApplicationController < ActionController::Base
     Rails.logger.info '---------------------------------------------------------'
     Rails.logger.info "Is admin filter"
     Rails.logger.info "#{current_user.is_admin?}"
-    redirect_to root_path, 
+    redirect_back_or root_path, 
       notice: "Esta intentado acceder a una seccion privada del sistema" unless current_user.is_admin?
   end
   

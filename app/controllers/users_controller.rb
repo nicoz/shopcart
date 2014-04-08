@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:show, :index, :edit, :update, :edit_password, :reset, :profile]
     
-  before_action :correct_user,   only: [:show, :edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
   
   before_action :is_admin, only: [:index]
   
@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
+    render layout: 'desktop'
   end
   
   def create
@@ -81,7 +82,6 @@ class UsersController < ApplicationController
   def profile
     @user = current_user
     @title = @user.name
-    render 'show'
   end
   
   def password_recovery

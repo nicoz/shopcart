@@ -33,12 +33,16 @@ Shopcart::Application.routes.draw do
   match "/signup", to: "users#new", via: 'get', as: :signup
   match "/user/:id/activate", to: 'users#activate', via: 'patch', as: :activate_user
   
+  match '/back', to: 'application#back', via: 'get', as: :back
+  
   match '/signin',  to: 'sessions#new',         via: 'get', as: :signin
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/ajax_signout', to: 'sessions#ajax_destroy',     via: 'delete', as: :ajax_signout
   match '/reset', to: 'sessions#reset', via: 'get', as: :reset
   match '/send_reset', to: 'sessions#send_reset', via: 'post'
   
-
+  match '/social_login', to: 'sessions#social_login', via: 'post', as: :social_login
+  
   match '/profile', to: "users#profile", via: 'get', as: :profile
   match '/edit_password', to: 'users#edit_password', via: 'get', as: :edit_password
   match '/reset_password', to: 'users#reset', via: 'patch', as: :reset_password

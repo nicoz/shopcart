@@ -6,10 +6,24 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <style id="holderjs-style" type="text/css"></style>
   <%= csrf_meta_tags %>
+  <%= social_scripts %>
 </head>
 <body>
   <%= render partial: "layouts/desktop/header" %>
-  <%= yield :body %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <%= render partial: '/administrators/main_side_bar', locals: { active: yield(:active) } %>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header"><%= yield(:title) %></h1>
+        <%= render partial: "shared/flash" %>
+        
+        <%= yield :body %>
+        
+      </div>
+    </div>
+  </div>
+
   
   <script>
     $(document).ready(function()    

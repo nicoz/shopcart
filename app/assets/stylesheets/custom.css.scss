@@ -7,7 +7,9 @@ $grayMediumLight: #eaeaea;
 }
 
 
-
+.marketing {
+  margin-bottom: 10px
+}
 
 .navbar {
   min-height: 50px;
@@ -18,13 +20,6 @@ $grayMediumLight: #eaeaea;
 }
 
 
-@media only screen and (max-width: 767px) {
-
-  .navbar-brand {
-    padding: 5px 15px !important;
-  }
-
-}
 
 /* miscellaneous */
 
@@ -35,3 +30,5 @@ $grayMediumLight: #eaeaea;
   margin-top: 45px;
   @include box_sizing;
 }
+
+iframe[src^="https://apis.google.com/u/0/_/widget/oauthflow/toast"] {display: none;}
