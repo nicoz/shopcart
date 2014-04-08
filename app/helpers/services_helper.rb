@@ -1,7 +1,7 @@
 module ServicesHelper
 
   def draw_value(service, key)
-    raw ServiceInformation.where(service_id: service.id).where(key: key).first.value
+    raw ServiceInformation.where(service_id: service.id).where(key: key).first.try(:value)
   end
   
   def social_scripts()
