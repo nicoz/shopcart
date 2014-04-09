@@ -1,0 +1,10 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'items' ) %>
+
+<% content_for :body do %>
+
+  <%= render partial: 'search', locals: { items: @items } %>
+
+  <%= render partial: 'items', locals: { items: @items } %>
+
+<% end %>

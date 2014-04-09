@@ -1,0 +1,42 @@
+
+<%= will_paginate %>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Acciones</th>
+        <th>#</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% field_types.each do |field_type| %>
+        <tr>
+          <td>
+            <a href="<%= field_type_path(field_type) %>" class="btn btn-default btn-default"><span class="glyphicon glyphicon-search"></span></a>
+            <a href="<%= edit_field_type_path(field_type) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+            <% if field_type.active %>
+              <a data-confirm="Seguro que desea eliminar el tipo de campo?" class="btn btn-default btn-default" data-method="delete" href="<%= field_type_path(field_type) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
+            <% else %>
+              <a data-confirm="Seguro que desea activar el Tipo de campo?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_field_type_path(field_type) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
+            <% end %>
+          </td>
+          <td> 
+            <%= field_type.id %>
+          </td>
+          <td><%= field_type.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate %>
+
+<script>
+  $("div.pagination ul").addClass('pagination');
+  
+  $('.previous_page > a').html("Previo");
+  $('.next_page > a').html("Proximo");
+</script>

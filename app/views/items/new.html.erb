@@ -1,0 +1,13 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'items' ) %>
+
+<% content_for :body do %>
+  
+  <% if !@item.errors.empty? %>
+    <%= error_messages("Warning!", "There have been some errors you need to fix.", @item) %>
+  <% end %>
+  <%= form_for @item, :html => { class: "form-signin", role: "form" } do  |form|  %>
+    <%= render partial: 'form_fields', locals: {item: @item, form: form } %>
+  <% end %>
+     
+<% end %>

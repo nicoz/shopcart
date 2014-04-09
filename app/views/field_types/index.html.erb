@@ -1,0 +1,10 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'fieldTypes' ) %>
+
+<% content_for :body do %>
+
+  <%= render partial: 'search',locals: { field_types: @field_types } %>
+
+  <%= render partial: 'field_types',locals: { field_types: @field_types } %>
+
+<% end %>

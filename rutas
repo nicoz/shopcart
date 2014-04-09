@@ -1,0 +1,266 @@
+                                    Prefix Verb   URI Pattern                                                                           Controller#Action
+                             validator_new POST   /validator/new(.:format)                                                              validator#new
+                                           GET    /404(.:format)                                                                        errors#not_found
+                                           GET    /422(.:format)                                                                        errors#unacceptable
+                                           GET    /500(.:format)                                                                        errors#internal_error
+                        start_installation GET    /installation(.:format)                                                               generals#index
+                     installation_step_one GET    /installation/user/new(.:format)                                                      administrators#new
+                     installation_step_two GET    /installation/configuration/new(.:format)                                             generals#new
+                         orden_compra_root GET    /orden_compra(.:format)                                                               orden_compra#index
+                        orden_compra_index GET    /orden_compra/index(.:format)                                                         orden_compra#index
+                          orden_compra_new GET    /orden_compra/new(.:format)                                                           orden_compra#new
+                       paypal_notification POST   /orden_compra/paypal_notification/:id(.:format)                                       orden_compra#paypal_notification
+                                      root GET    /                                                                                     pages#home
+                            administrators GET    /administrators(.:format)                                                             administrators#index
+                                           POST   /administrators(.:format)                                                             administrators#create
+                         new_administrator GET    /administrators/new(.:format)                                                         administrators#new
+                                     users GET    /users(.:format)                                                                      users#index
+                                           POST   /users(.:format)                                                                      users#create
+                                  new_user GET    /users/new(.:format)                                                                  users#new
+                                 edit_user GET    /users/:id/edit(.:format)                                                             users#edit
+                                      user GET    /users/:id(.:format)                                                                  users#show
+                                           PATCH  /users/:id(.:format)                                                                  users#update
+                                           PUT    /users/:id(.:format)                                                                  users#update
+                                           DELETE /users/:id(.:format)                                                                  users#destroy
+                                  generals GET    /generals(.:format)                                                                   generals#index
+                                           POST   /generals(.:format)                                                                   generals#create
+                               new_general GET    /generals/new(.:format)                                                               generals#new
+                              edit_general GET    /generals/:id/edit(.:format)                                                          generals#edit
+                                   general GET    /generals/:id(.:format)                                                               generals#show
+                                           PATCH  /generals/:id(.:format)                                                               generals#update
+                                           PUT    /generals/:id(.:format)                                                               generals#update
+                                           DELETE /generals/:id(.:format)                                                               generals#destroy
+         service_service_information_index GET    /services/:service_id/service_information(.:format)                                   service_information#index
+                                           POST   /services/:service_id/service_information(.:format)                                   service_information#create
+           new_service_service_information GET    /services/:service_id/service_information/new(.:format)                               service_information#new
+          edit_service_service_information GET    /services/:service_id/service_information/:id/edit(.:format)                          service_information#edit
+               service_service_information GET    /services/:service_id/service_information/:id(.:format)                               service_information#show
+                                           PATCH  /services/:service_id/service_information/:id(.:format)                               service_information#update
+                                           PUT    /services/:service_id/service_information/:id(.:format)                               service_information#update
+                                           DELETE /services/:service_id/service_information/:id(.:format)                               service_information#destroy
+                                  services GET    /services(.:format)                                                                   services#index
+                                           POST   /services(.:format)                                                                   services#create
+                               new_service GET    /services/new(.:format)                                                               services#new
+                              edit_service GET    /services/:id/edit(.:format)                                                          services#edit
+                                   service GET    /services/:id(.:format)                                                               services#show
+                                           PATCH  /services/:id(.:format)                                                               services#update
+                                           PUT    /services/:id(.:format)                                                               services#update
+                                           DELETE /services/:id(.:format)                                                               services#destroy
+   item_item_field_item_field_posibilities GET    /items/:item_id/item_fields/:item_field_id/item_field_posibilities(.:format)          item_field_posibilities#index
+                                           POST   /items/:item_id/item_fields/:item_field_id/item_field_posibilities(.:format)          item_field_posibilities#create
+ new_item_item_field_item_field_posibility GET    /items/:item_id/item_fields/:item_field_id/item_field_posibilities/new(.:format)      item_field_posibilities#new
+edit_item_item_field_item_field_posibility GET    /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id/edit(.:format) item_field_posibilities#edit
+     item_item_field_item_field_posibility GET    /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id(.:format)      item_field_posibilities#show
+                                           PATCH  /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id(.:format)      item_field_posibilities#update
+                                           PUT    /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id(.:format)      item_field_posibilities#update
+                                           DELETE /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id(.:format)      item_field_posibilities#destroy
+    item_item_field_item_field_validations GET    /items/:item_id/item_fields/:item_field_id/item_field_validations(.:format)           item_field_validations#index
+                                           POST   /items/:item_id/item_fields/:item_field_id/item_field_validations(.:format)           item_field_validations#create
+ new_item_item_field_item_field_validation GET    /items/:item_id/item_fields/:item_field_id/item_field_validations/new(.:format)       item_field_validations#new
+edit_item_item_field_item_field_validation GET    /items/:item_id/item_fields/:item_field_id/item_field_validations/:id/edit(.:format)  item_field_validations#edit
+     item_item_field_item_field_validation GET    /items/:item_id/item_fields/:item_field_id/item_field_validations/:id(.:format)       item_field_validations#show
+                                           PATCH  /items/:item_id/item_fields/:item_field_id/item_field_validations/:id(.:format)       item_field_validations#update
+                                           PUT    /items/:item_id/item_fields/:item_field_id/item_field_validations/:id(.:format)       item_field_validations#update
+                                           DELETE /items/:item_id/item_fields/:item_field_id/item_field_validations/:id(.:format)       item_field_validations#destroy
+                          item_item_fields GET    /items/:item_id/item_fields(.:format)                                                 item_fields#index
+                                           POST   /items/:item_id/item_fields(.:format)                                                 item_fields#create
+                       new_item_item_field GET    /items/:item_id/item_fields/new(.:format)                                             item_fields#new
+                      edit_item_item_field GET    /items/:item_id/item_fields/:id/edit(.:format)                                        item_fields#edit
+                           item_item_field GET    /items/:item_id/item_fields/:id(.:format)                                             item_fields#show
+                                           PATCH  /items/:item_id/item_fields/:id(.:format)                                             item_fields#update
+                                           PUT    /items/:item_id/item_fields/:id(.:format)                                             item_fields#update
+                                           DELETE /items/:item_id/item_fields/:id(.:format)                                             item_fields#destroy
+                                     items GET    /items(.:format)                                                                      items#index
+                                           POST   /items(.:format)                                                                      items#create
+                                  new_item GET    /items/new(.:format)                                                                  items#new
+                                 edit_item GET    /items/:id/edit(.:format)                                                             items#edit
+                                      item GET    /items/:id(.:format)                                                                  items#show
+                                           PATCH  /items/:id(.:format)                                                                  items#update
+                                           PUT    /items/:id(.:format)                                                                  items#update
+                                           DELETE /items/:id(.:format)                                                                  items#destroy
+        item_instance_item_instance_values GET    /item_instances/:item_instance_id/item_instance_values(.:format)                      item_instance_values#index
+                                           POST   /item_instances/:item_instance_id/item_instance_values(.:format)                      item_instance_values#create
+     new_item_instance_item_instance_value GET    /item_instances/:item_instance_id/item_instance_values/new(.:format)                  item_instance_values#new
+    edit_item_instance_item_instance_value GET    /item_instances/:item_instance_id/item_instance_values/:id/edit(.:format)             item_instance_values#edit
+         item_instance_item_instance_value GET    /item_instances/:item_instance_id/item_instance_values/:id(.:format)                  item_instance_values#show
+                                           PATCH  /item_instances/:item_instance_id/item_instance_values/:id(.:format)                  item_instance_values#update
+                                           PUT    /item_instances/:item_instance_id/item_instance_values/:id(.:format)                  item_instance_values#update
+                                           DELETE /item_instances/:item_instance_id/item_instance_values/:id(.:format)                  item_instance_values#destroy
+                            item_instances GET    /item_instances(.:format)                                                             item_instances#index
+                                           POST   /item_instances(.:format)                                                             item_instances#create
+                         new_item_instance GET    /item_instances/new(.:format)                                                         item_instances#new
+                        edit_item_instance GET    /item_instances/:id/edit(.:format)                                                    item_instances#edit
+                             item_instance GET    /item_instances/:id(.:format)                                                         item_instances#show
+                                           PATCH  /item_instances/:id(.:format)                                                         item_instances#update
+                                           PUT    /item_instances/:id(.:format)                                                         item_instances#update
+                                           DELETE /item_instances/:id(.:format)                                                         item_instances#destroy
+              field_type_field_validations GET    /field_types/:field_type_id/field_validations(.:format)                               field_validations#index
+                                           POST   /field_types/:field_type_id/field_validations(.:format)                               field_validations#create
+           new_field_type_field_validation GET    /field_types/:field_type_id/field_validations/new(.:format)                           field_validations#new
+          edit_field_type_field_validation GET    /field_types/:field_type_id/field_validations/:id/edit(.:format)                      field_validations#edit
+               field_type_field_validation GET    /field_types/:field_type_id/field_validations/:id(.:format)                           field_validations#show
+                                           PATCH  /field_types/:field_type_id/field_validations/:id(.:format)                           field_validations#update
+                                           PUT    /field_types/:field_type_id/field_validations/:id(.:format)                           field_validations#update
+                                           DELETE /field_types/:field_type_id/field_validations/:id(.:format)                           field_validations#destroy
+                               field_types GET    /field_types(.:format)                                                                field_types#index
+                                           POST   /field_types(.:format)                                                                field_types#create
+                            new_field_type GET    /field_types/new(.:format)                                                            field_types#new
+                           edit_field_type GET    /field_types/:id/edit(.:format)                                                       field_types#edit
+                                field_type GET    /field_types/:id(.:format)                                                            field_types#show
+                                           PATCH  /field_types/:id(.:format)                                                            field_types#update
+                                           PUT    /field_types/:id(.:format)                                                            field_types#update
+                                           DELETE /field_types/:id(.:format)                                                            field_types#destroy
+                                  sessions POST   /sessions(.:format)                                                                   sessions#create
+                               new_session GET    /sessions/new(.:format)                                                               sessions#new
+                                   session DELETE /sessions/:id(.:format)                                                               sessions#destroy
+                                    signup GET    /signup(.:format)                                                                     users#new
+                             activate_user PATCH  /user/:id/activate(.:format)                                                          users#activate
+                                      back GET    /back(.:format)                                                                       application#back
+                                    signin GET    /signin(.:format)                                                                     sessions#new
+                                   signout DELETE /signout(.:format)                                                                    sessions#destroy
+                              ajax_signout DELETE /ajax_signout(.:format)                                                               sessions#ajax_destroy
+                                     reset GET    /reset(.:format)                                                                      sessions#reset
+                                send_reset POST   /send_reset(.:format)                                                                 sessions#send_reset
+                              social_login POST   /social_login(.:format)                                                               sessions#social_login
+                                   profile GET    /profile(.:format)                                                                    users#profile
+                             edit_password GET    /edit_password(.:format)                                                              users#edit_password
+                            reset_password PATCH  /reset_password(.:format)                                                             users#reset
+                         password_recovery GET    /password_recovery/:remember_token(.:format)                                          users#password_recovery
+                     set_recovery_password PATCH  /set_recovery_password(.:format)                                                      users#set_recovery_password
+                             configuration GET    /configuration(.:format)                                                              generals#show
+                          activate_service PATCH  /service/:id/activate(.:format)                                                       services#activate
+      activate_service_service_information PATCH  /services/:service_id/service_information/:id/activate(.:format)                      service_information#activate
+                               static_page GET    /:page_name(.:format)                                                                 pages#show
+                                    Prefix Verb   URI Pattern                                                                           Controller#Action
+                             validator_new POST   /validator/new(.:format)                                                              validator#new
+                                           GET    /404(.:format)                                                                        errors#not_found
+                                           GET    /422(.:format)                                                                        errors#unacceptable
+                                           GET    /500(.:format)                                                                        errors#internal_error
+                        start_installation GET    /installation(.:format)                                                               generals#index
+                     installation_step_one GET    /installation/user/new(.:format)                                                      administrators#new
+                     installation_step_two GET    /installation/configuration/new(.:format)                                             generals#new
+                         orden_compra_root GET    /orden_compra(.:format)                                                               orden_compra#index
+                        orden_compra_index GET    /orden_compra/index(.:format)                                                         orden_compra#index
+                          orden_compra_new GET    /orden_compra/new(.:format)                                                           orden_compra#new
+                       paypal_notification POST   /orden_compra/paypal_notification/:id(.:format)                                       orden_compra#paypal_notification
+                                      root GET    /                                                                                     pages#home
+                            administrators GET    /administrators(.:format)                                                             administrators#index
+                                           POST   /administrators(.:format)                                                             administrators#create
+                         new_administrator GET    /administrators/new(.:format)                                                         administrators#new
+                                     users GET    /users(.:format)                                                                      users#index
+                                           POST   /users(.:format)                                                                      users#create
+                                  new_user GET    /users/new(.:format)                                                                  users#new
+                                 edit_user GET    /users/:id/edit(.:format)                                                             users#edit
+                                      user GET    /users/:id(.:format)                                                                  users#show
+                                           PATCH  /users/:id(.:format)                                                                  users#update
+                                           PUT    /users/:id(.:format)                                                                  users#update
+                                           DELETE /users/:id(.:format)                                                                  users#destroy
+                                  generals GET    /generals(.:format)                                                                   generals#index
+                                           POST   /generals(.:format)                                                                   generals#create
+                               new_general GET    /generals/new(.:format)                                                               generals#new
+                              edit_general GET    /generals/:id/edit(.:format)                                                          generals#edit
+                                   general GET    /generals/:id(.:format)                                                               generals#show
+                                           PATCH  /generals/:id(.:format)                                                               generals#update
+                                           PUT    /generals/:id(.:format)                                                               generals#update
+                                           DELETE /generals/:id(.:format)                                                               generals#destroy
+                                  sessions POST   /sessions(.:format)                                                                   sessions#create
+                               new_session GET    /sessions/new(.:format)                                                               sessions#new
+                                   session DELETE /sessions/:id(.:format)                                                               sessions#destroy
+         service_service_information_index GET    /services/:service_id/service_information(.:format)                                   service_information#index
+                                           POST   /services/:service_id/service_information(.:format)                                   service_information#create
+           new_service_service_information GET    /services/:service_id/service_information/new(.:format)                               service_information#new
+          edit_service_service_information GET    /services/:service_id/service_information/:id/edit(.:format)                          service_information#edit
+               service_service_information GET    /services/:service_id/service_information/:id(.:format)                               service_information#show
+                                           PATCH  /services/:service_id/service_information/:id(.:format)                               service_information#update
+                                           PUT    /services/:service_id/service_information/:id(.:format)                               service_information#update
+                                           DELETE /services/:service_id/service_information/:id(.:format)                               service_information#destroy
+                                  services GET    /services(.:format)                                                                   services#index
+                                           POST   /services(.:format)                                                                   services#create
+                               new_service GET    /services/new(.:format)                                                               services#new
+                              edit_service GET    /services/:id/edit(.:format)                                                          services#edit
+                                   service GET    /services/:id(.:format)                                                               services#show
+                                           PATCH  /services/:id(.:format)                                                               services#update
+                                           PUT    /services/:id(.:format)                                                               services#update
+                                           DELETE /services/:id(.:format)                                                               services#destroy
+   item_item_field_item_field_posibilities GET    /items/:item_id/item_fields/:item_field_id/item_field_posibilities(.:format)          item_field_posibilities#index
+                                           POST   /items/:item_id/item_fields/:item_field_id/item_field_posibilities(.:format)          item_field_posibilities#create
+ new_item_item_field_item_field_posibility GET    /items/:item_id/item_fields/:item_field_id/item_field_posibilities/new(.:format)      item_field_posibilities#new
+edit_item_item_field_item_field_posibility GET    /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id/edit(.:format) item_field_posibilities#edit
+     item_item_field_item_field_posibility GET    /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id(.:format)      item_field_posibilities#show
+                                           PATCH  /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id(.:format)      item_field_posibilities#update
+                                           PUT    /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id(.:format)      item_field_posibilities#update
+                                           DELETE /items/:item_id/item_fields/:item_field_id/item_field_posibilities/:id(.:format)      item_field_posibilities#destroy
+    item_item_field_item_field_validations GET    /items/:item_id/item_fields/:item_field_id/item_field_validations(.:format)           item_field_validations#index
+                                           POST   /items/:item_id/item_fields/:item_field_id/item_field_validations(.:format)           item_field_validations#create
+ new_item_item_field_item_field_validation GET    /items/:item_id/item_fields/:item_field_id/item_field_validations/new(.:format)       item_field_validations#new
+edit_item_item_field_item_field_validation GET    /items/:item_id/item_fields/:item_field_id/item_field_validations/:id/edit(.:format)  item_field_validations#edit
+     item_item_field_item_field_validation GET    /items/:item_id/item_fields/:item_field_id/item_field_validations/:id(.:format)       item_field_validations#show
+                                           PATCH  /items/:item_id/item_fields/:item_field_id/item_field_validations/:id(.:format)       item_field_validations#update
+                                           PUT    /items/:item_id/item_fields/:item_field_id/item_field_validations/:id(.:format)       item_field_validations#update
+                                           DELETE /items/:item_id/item_fields/:item_field_id/item_field_validations/:id(.:format)       item_field_validations#destroy
+                          item_item_fields GET    /items/:item_id/item_fields(.:format)                                                 item_fields#index
+                                           POST   /items/:item_id/item_fields(.:format)                                                 item_fields#create
+                       new_item_item_field GET    /items/:item_id/item_fields/new(.:format)                                             item_fields#new
+                      edit_item_item_field GET    /items/:item_id/item_fields/:id/edit(.:format)                                        item_fields#edit
+                           item_item_field GET    /items/:item_id/item_fields/:id(.:format)                                             item_fields#show
+                                           PATCH  /items/:item_id/item_fields/:id(.:format)                                             item_fields#update
+                                           PUT    /items/:item_id/item_fields/:id(.:format)                                             item_fields#update
+                                           DELETE /items/:item_id/item_fields/:id(.:format)                                             item_fields#destroy
+                                     items GET    /items(.:format)                                                                      items#index
+                                           POST   /items(.:format)                                                                      items#create
+                                  new_item GET    /items/new(.:format)                                                                  items#new
+                                 edit_item GET    /items/:id/edit(.:format)                                                             items#edit
+                                      item GET    /items/:id(.:format)                                                                  items#show
+                                           PATCH  /items/:id(.:format)                                                                  items#update
+                                           PUT    /items/:id(.:format)                                                                  items#update
+                                           DELETE /items/:id(.:format)                                                                  items#destroy
+        item_instance_item_instance_values GET    /item_instances/:item_instance_id/item_instance_values(.:format)                      item_instance_values#index
+                                           POST   /item_instances/:item_instance_id/item_instance_values(.:format)                      item_instance_values#create
+     new_item_instance_item_instance_value GET    /item_instances/:item_instance_id/item_instance_values/new(.:format)                  item_instance_values#new
+    edit_item_instance_item_instance_value GET    /item_instances/:item_instance_id/item_instance_values/:id/edit(.:format)             item_instance_values#edit
+         item_instance_item_instance_value GET    /item_instances/:item_instance_id/item_instance_values/:id(.:format)                  item_instance_values#show
+                                           PATCH  /item_instances/:item_instance_id/item_instance_values/:id(.:format)                  item_instance_values#update
+                                           PUT    /item_instances/:item_instance_id/item_instance_values/:id(.:format)                  item_instance_values#update
+                                           DELETE /item_instances/:item_instance_id/item_instance_values/:id(.:format)                  item_instance_values#destroy
+                            item_instances GET    /item_instances(.:format)                                                             item_instances#index
+                                           POST   /item_instances(.:format)                                                             item_instances#create
+                         new_item_instance GET    /item_instances/new(.:format)                                                         item_instances#new
+                        edit_item_instance GET    /item_instances/:id/edit(.:format)                                                    item_instances#edit
+                             item_instance GET    /item_instances/:id(.:format)                                                         item_instances#show
+                                           PATCH  /item_instances/:id(.:format)                                                         item_instances#update
+                                           PUT    /item_instances/:id(.:format)                                                         item_instances#update
+                                           DELETE /item_instances/:id(.:format)                                                         item_instances#destroy
+              field_type_field_validations GET    /field_types/:field_type_id/field_validations(.:format)                               field_validations#index
+                                           POST   /field_types/:field_type_id/field_validations(.:format)                               field_validations#create
+           new_field_type_field_validation GET    /field_types/:field_type_id/field_validations/new(.:format)                           field_validations#new
+          edit_field_type_field_validation GET    /field_types/:field_type_id/field_validations/:id/edit(.:format)                      field_validations#edit
+               field_type_field_validation GET    /field_types/:field_type_id/field_validations/:id(.:format)                           field_validations#show
+                                           PATCH  /field_types/:field_type_id/field_validations/:id(.:format)                           field_validations#update
+                                           PUT    /field_types/:field_type_id/field_validations/:id(.:format)                           field_validations#update
+                                           DELETE /field_types/:field_type_id/field_validations/:id(.:format)                           field_validations#destroy
+                               field_types GET    /field_types(.:format)                                                                field_types#index
+                                           POST   /field_types(.:format)                                                                field_types#create
+                            new_field_type GET    /field_types/new(.:format)                                                            field_types#new
+                           edit_field_type GET    /field_types/:id/edit(.:format)                                                       field_types#edit
+                                field_type GET    /field_types/:id(.:format)                                                            field_types#show
+                                           PATCH  /field_types/:id(.:format)                                                            field_types#update
+                                           PUT    /field_types/:id(.:format)                                                            field_types#update
+                                           DELETE /field_types/:id(.:format)                                                            field_types#destroy
+                                    signup GET    /signup(.:format)                                                                     users#new
+                             activate_user PATCH  /user/:id/activate(.:format)                                                          users#activate
+                                      back GET    /back(.:format)                                                                       application#back
+                                    signin GET    /signin(.:format)                                                                     sessions#new
+                                   signout DELETE /signout(.:format)                                                                    sessions#destroy
+                              ajax_signout DELETE /ajax_signout(.:format)                                                               sessions#ajax_destroy
+                                     reset GET    /reset(.:format)                                                                      sessions#reset
+                                send_reset POST   /send_reset(.:format)                                                                 sessions#send_reset
+                              social_login POST   /social_login(.:format)                                                               sessions#social_login
+                                   profile GET    /profile(.:format)                                                                    users#profile
+                             edit_password GET    /edit_password(.:format)                                                              users#edit_password
+                            reset_password PATCH  /reset_password(.:format)                                                             users#reset
+                         password_recovery GET    /password_recovery/:remember_token(.:format)                                          users#password_recovery
+                     set_recovery_password PATCH  /set_recovery_password(.:format)                                                      users#set_recovery_password
+                             configuration GET    /configuration(.:format)                                                              generals#show
+                          activate_service PATCH  /service/:id/activate(.:format)                                                       services#activate
+      activate_service_service_information PATCH  /services/:service_id/service_information/:id/activate(.:format)                      service_information#activate
+                               static_page GET    /:page_name(.:format)                                                                 pages#show

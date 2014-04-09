@@ -1,0 +1,9 @@
+<label for="name">Nombre</label>
+<%= attribute_tag(item, :name, params = {form: form, placeholder: "Nombre", type: "text", class: "form-control", validations: :all}) %>
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= render partial: '/shared/back', locals: {path: ''} %>
+</div>

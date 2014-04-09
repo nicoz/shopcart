@@ -1,0 +1,42 @@
+
+<%= will_paginate %>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Acciones</th>
+        <th>#</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.each do |item| %>
+        <tr>
+          <td>
+            <a href="<%= item_path(item) %>" class="btn btn-default btn-default"><span class="glyphicon glyphicon-search"></span></a>
+            <a href="<%= edit_item_path(item) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+            <% if item.active %>
+              <a data-confirm="Seguro que desea eliminar el Item?" class="btn btn-default btn-default" data-method="delete" href="<%= item_path(item) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
+            <% else %>
+              <a data-confirm="Seguro que desea activar el Item?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_item_path(item) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
+            <% end %>
+          </td>
+          <td> 
+            <%= item.id %>
+          </td>
+          <td><%= item.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate %>
+
+<script>
+  $("div.pagination ul").addClass('pagination');
+  
+  $('.previous_page > a').html("Previo");
+  $('.next_page > a').html("Proximo");
+</script>

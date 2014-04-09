@@ -1,0 +1,13 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'fieldTypes' ) %>
+
+<% content_for :body do %>
+  
+  <% if !@field_type.errors.empty? %>
+    <%= error_messages("Warning!", "There have been some errors you need to fix.", @field_type) %>
+  <% end %>
+  <%= form_for @field_type, :html => { class: "form-signin", role: "form" } do  |form|  %>
+    <%= render partial: 'form_fields', locals: {field_type: @field_type, form: form } %>
+  <% end %>
+     
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409133004) do
+ActiveRecord::Schema.define(version: 20140409194641) do
 
   create_table "configurations", force: true do |t|
     t.string   "application_name"
@@ -19,6 +19,24 @@ ActiveRecord::Schema.define(version: 20140409133004) do
     t.string   "application_slogan"
     t.string   "application_logo"
     t.string   "application_icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "field_types", force: true do |t|
+    t.string   "name"
+    t.boolean  "active",     default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "field_type"
+  end
+
+  add_index "field_types", ["name"], name: "index_field_types_on_name"
+
+  create_table "field_validations", force: true do |t|
+    t.string   "name"
+    t.text     "parameters"
+    t.integer  "field_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +50,61 @@ ActiveRecord::Schema.define(version: 20140409133004) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "item_field_posibilities", force: true do |t|
+    t.integer  "item_field_id"
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_field_validations", force: true do |t|
+    t.integer  "item_field_id"
+    t.integer  "field_validation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_fields", force: true do |t|
+    t.string   "name"
+    t.string   "label"
+    t.boolean  "searchable",    default: false
+    t.boolean  "active",        default: true
+    t.integer  "item_id"
+    t.integer  "field_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_fields", ["item_id", "id"], name: "index_item_fields_on_item_id_and_id"
+
+  create_table "item_instance_values", force: true do |t|
+    t.integer  "item_instance_id"
+    t.integer  "item_field_id"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_instance_values", ["id", "item_instance_id", "item_field_id"], name: "value_index"
+
+  create_table "item_instances", force: true do |t|
+    t.integer  "item_id"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_instances", ["item_id"], name: "index_item_instances_on_item_id"
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "active",     default: true
+  end
+
+  add_index "items", ["name"], name: "index_items_on_name"
 
   create_table "orden_compras", force: true do |t|
     t.float    "total"

@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  service_id :integer
 #  key        :string(255)
-#  value      :string(255)
+#  value      :text(255)
 #  created_at :datetime
 #  updated_at :datetime
 #  active     :boolean          default(TRUE)

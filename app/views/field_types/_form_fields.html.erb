@@ -1,0 +1,12 @@
+<label for="name">Nombre</label>
+<%= attribute_tag(field_type, :name, params = {form: form, placeholder: "Nombre", type: "text", class: "form-control", validations: :all}) %>
+
+<label for="field_type_type">Tipo</label>
+<%= form.select(:field_type, ["value", "image", "file", "list"], {include_blank: false}, class: "form-control") %>
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= render partial: '/shared/back', locals: {path: ''} %>
+</div>

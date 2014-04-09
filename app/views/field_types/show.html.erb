@@ -1,0 +1,11 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'fieldTypes' ) %>
+
+<% content_for :body do %>
+
+  <%= render partial: 'details', locals: { field_type: @field_type } %>
+  
+
+<% end %>
+
+

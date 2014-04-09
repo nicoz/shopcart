@@ -25,10 +25,27 @@ Shopcart::Application.routes.draw do
   resources :administrators, only: [:index, :new, :create]
   resources :users
   resources :generals
+  resources :sessions, only: [:new, :create, :destroy]
+  
   resources :services do
     resources 'service_information'
   end
-  resources :sessions, only: [:new, :create, :destroy]
+  
+  resources :items do
+    resources :item_fields do
+      resources :item_field_posibilities
+      resources :item_field_validations
+    end
+  end
+  resources :item_instances do
+    resources :item_instance_values
+  end
+  
+  resources :field_types do
+    resources :field_validations
+  end
+  
+  
 
   match "/signup", to: "users#new", via: 'get', as: :signup
   match "/user/:id/activate", to: 'users#activate', via: 'patch', as: :activate_user
@@ -54,6 +71,10 @@ Shopcart::Application.routes.draw do
   match '/configuration', to: 'generals#show', via: 'get', as: :configuration
   
   match "/service/:id/activate", to: 'services#activate', via: 'patch', as: :activate_service
+  
+  match "/item/:id/activate", to: 'items#activate', via: 'patch', as: :activate_item
+  
+  match "/field_type/:id/activate", to: 'field_types#activate', via: 'patch', as: :activate_field_type
   
   match "/services/:service_id/service_information/:id/activate", to: 'service_information#activate', via: 'patch', as: :activate_service_service_information
   
