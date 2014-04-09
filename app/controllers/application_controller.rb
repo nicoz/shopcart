@@ -43,12 +43,10 @@ class ApplicationController < ActionController::Base
   end
   
   def is_admin
-    Rails.logger.info '---------------------------------------------------------'
-    Rails.logger.info '---------------------------------------------------------'
-    Rails.logger.info "Is admin filter"
-    Rails.logger.info "#{current_user.is_admin?}"
-    redirect_back_or root_path, 
-      notice: "Esta intentado acceder a una seccion privada del sistema" unless current_user.is_admin?
+    unless current_user.is_admin?
+      flash[:notice] = "Esta intentado acceder a una seccion privada del sistema"
+      redirect_back_or root_path
+    end
   end
   
   private 

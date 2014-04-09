@@ -62,6 +62,8 @@ class SessionsController < ApplicationController
     if user
       social_sign_in user
       render json: user.to_json
+    else 
+      render json: { message: 'error' }
     end
   end
   

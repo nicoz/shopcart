@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   before_action :set_configuration
   
+  before_action :keep_location, only: [:home]
+  
   def home
     @title = 'Inicio'
     render layout: "home"
