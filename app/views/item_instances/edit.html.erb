@@ -1,0 +1,23 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'products' ) %>
+
+<% content_for :body do %>
+  
+  <% if !@item_instance.errors.empty? %>
+    <%= error_messages("Warning!", "There have been some errors you need to fix.", @item_instance) %>
+  <% end %>
+  <%= form_for @item_instance_version, url: {controller: 'item_instances', action: 'update'}, method: 'patch', :html => {class: 'form-signin', role: "form" } do  |form|  %>
+    <%= form.fields_for :item_instance_version_values, @item_instance_version.orderer_values do |ff| %>
+      <%= form.hidden_field :item_instance_id %>
+      <%= render partial: 'form_fields', locals: {value: ff.object, form: ff } %>
+    <% end %>
+    
+    <div class="row">
+      <div class="col-md-5">
+        <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+      </div>
+      <%= render partial: '/shared/back', locals: {path: ''} %>
+    </div>
+  <% end %>
+     
+<% end %>

@@ -1,3 +1,20 @@
+<% counter = 0 %>
+<% items.each do |item| %>
+  <% if counter == 0 %>
+    <div class="row placeholders">
+  <% end %>
+  <div class="col-xs-6 col-sm-3 placeholder">
+    <img class="img-responsive" alt="<%= item.name %>" src="<%= item.image_url(:big_button) %>">
+    <h4><%= link_to item.name.pluralize, products_path(item.name) %></h4>
+    <span class="text-muted">Administracion de <%= item.name.pluralize %></span>
+  </div>
+  <% if counter == 0 %>
+    </div>
+  <% end %>
+  <% counter = counter == 3 ? 0 : counter + 1 %>
+<% end %>
+
+
 <div class="row placeholders">
   <div class="col-xs-6 col-sm-3 placeholder">
     <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzBEOEZEQiI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojZmZmO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">

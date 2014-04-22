@@ -1,0 +1,9 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'products' ) %>
+
+<% content_for :body do %>
+  <%= render partial: 'lines_search', locals: { fields: @item.current_version.searchable_fields, item: @item }%>
+  
+  
+  <%= render partial: 'lines', locals: { fields: @item.current_version.item_fields, item: @item, lines: @lines }%>
+<% end %>

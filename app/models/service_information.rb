@@ -20,8 +20,12 @@ class ServiceInformation < ActiveRecord::Base
   validates  :value,      presence: true
   
   def destroy
-    self.active = false
-    self.save
+    if self.active
+      self.active = false
+      self.save
+    else
+      nil
+    end
   end
   
   def activate

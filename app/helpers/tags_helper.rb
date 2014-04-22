@@ -60,7 +60,7 @@ module TagsHelper
               if (!error) { #{      format_of( object, attribute )} }
               if (!error) { #{      length_of( object, attribute )} }
             }
-
+            console.log(test_type);
             if (test_type == 'all' || test_type == 'ajax') {
               if (!error) { #{ajax_test(object, attribute)}}
             }

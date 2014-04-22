@@ -1,0 +1,30 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Acciones</th>
+        <th>Clave</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% lines.each do |line| %>
+        <tr>
+          <td>
+            <a href="<%= edit_field_type_field_map_path(field_type, line) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+            <% if line.active %>
+              <a data-confirm="Seguro que desea eliminar el elemento?" class="btn btn-default btn-default" data-method="delete" href="<%= field_type_field_map_path(field_type, line) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
+            <% else %>
+              <a data-confirm="Seguro que desea activar el elemento?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_field_type_field_map_path(field_type,line) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
+            <% end %>
+          </td>
+          <td> 
+            <%= line.key %>
+          </td>
+          <td><%= line.value %></td>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -12,10 +12,6 @@ class ItemsController < ApplicationController
       @items = Item.where(active: params[:inactive] != 'on').paginate(page: params[:page])
     end
     
-    @items.each do |item|
-      Rails.logger.info item.name
-    end
-    
     @title = "Administracion de Items"
     render layout: 'desktop'
   end
@@ -79,14 +75,15 @@ class ItemsController < ApplicationController
   def show
     @title = 'Detalles del Item'
     @item = Item.find(params[:id])
+    @item_version = ItemVersion.new(item_id: @item_id)
     
-    @lines = @item.item_fields
+    @lines = @item.lines(params).paginate(page: params[:page])
     
     render layout: 'desktop'
   end
   
   private
     def items_params
-      params.require(:item).permit(:name)
+      params.require(:item).permit(:name, :image)
     end
 end

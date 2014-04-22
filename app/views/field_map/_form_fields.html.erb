@@ -1,0 +1,15 @@
+
+<label for="key">Clave</label>
+<%= form.hidden_field :field_type_id %>
+
+<%= attribute_tag(field_map, :key, params = {form: form, placeholder: "Clave", type: "text", class: "form-control", validations: :all}) %>
+
+<label for="value">Valor</label>
+<%= attribute_tag(field_map, :value, params = {form: form, placeholder: "Valor", type: "text", class: "form-control", validations: :all}) %>
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= render partial: '/shared/back', locals: {path: ''} %>
+</div>

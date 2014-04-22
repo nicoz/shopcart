@@ -5,7 +5,9 @@
 
   <%= render partial: 'details', locals: { field_type: @field_type } %>
   
-
+  <%= render partial: 'lines_search', locals: { field_type: @field_type }%>
+  
+  <%= render partial: 'lines', locals: { lines: @lines, field_type: @field_type }%>
 <% end %>
 
 

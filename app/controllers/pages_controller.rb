@@ -5,6 +5,10 @@ class PagesController < ApplicationController
   
   def home
     @title = 'Inicio'
+    
+    @book = Item.where(name: 'Libro').first
+    @books = ItemInstance.joins(item_version: :item).where('items.active=?', true).where('items.id=?', @book.id).where(active: true)
+    
     render layout: "home"
   end
   

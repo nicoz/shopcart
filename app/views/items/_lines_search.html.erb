@@ -1,18 +1,19 @@
 <form role="form" action="<%= item_path(item) %>" method="get">
   <div class="form-group">
-    <label for="name">Nombre</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Clave", value="<%= params[:name] %>">
+    <label for="state">Estado</label>
+    <%= select_tag(:state, options_for_select([ "open", "close", "cancel"], params[:state]), {include_blank: true, class: "form-control"}) %>
   </div>
-  <div class="checkbox">
-    <label>
-      <%= check_box_tag :inactive, 'on', params[:inactive] == 'on' %> Mostrar Eliminados
-    </label>
-  </div>
+  
   <button type="submit" class="btn btn-default">Buscar</button>
 </form>
 
 <hr />
 
-<%= link_to new_item_item_field_path(item), class: "btn btn-lg btn-primary" do %>
-  <span class="glyphicon glyphicon-plus"></span> Crear Campo
+<%= form_for [item, @item_version],  :html => { role: "form" } do  |form| %>
+  <%= form.hidden_field :item_id %>
+  
+  <%= button_tag(type: 'submit', class: "btn btn-lg btn-primary") do %>
+    <span class="glyphicon glyphicon-plus"></span> Crear Nueva Version
+  <% end %>
+
 <% end %>

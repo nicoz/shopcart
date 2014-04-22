@@ -3,6 +3,9 @@ class AdministratorsController < ApplicationController
   #This is the administrator desktop
   def index
     @title = "Escritorio del Administrador"
+    
+    @items = Item.active_items
+    
     render layout: "desktop"
   end
   

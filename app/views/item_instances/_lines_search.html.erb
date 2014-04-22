@@ -1,0 +1,29 @@
+<form role="form" action="<%= products_path(item.name) %>" method="get">
+  <% fields.each do |field| %>
+    <div class="row">
+      <div class='form-group col-sm-6 col-md-6 col-lg-6'>
+        <%= raw create_search_field(field, value: params[field.name.to_sym]) %>
+      </div>
+    </div>    
+  <% end %>
+  <div class="row">
+    <div class='form-group col-sm-6 col-md-6 col-lg-6'>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag :inactive, 'on', params[:inactive] == 'on' %> Mostrar Eliminados
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='form-group col-sm-6 col-md-6 col-lg-6'>
+      <button type="submit" class="btn btn-default">Buscar</button>
+    </div>
+  </div>
+</form>
+
+<hr />
+
+<%= link_to new_product_path(item.name), class: "btn btn-lg btn-primary" do %>
+  <span class="glyphicon glyphicon-plus"></span> Crear <%= item.name %>
+<% end %>

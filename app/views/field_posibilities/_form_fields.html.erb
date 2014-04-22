@@ -1,0 +1,13 @@
+
+<label for="text">Texto</label>
+<%= form.hidden_field :field_type_id %>
+
+<%= attribute_tag(field_posibility, :text, params = {form: form, placeholder: "Texto", type: "text", class: "form-control", validations: :all}) %>
+
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= render partial: '/shared/back', locals: {path: ''} %>
+</div>

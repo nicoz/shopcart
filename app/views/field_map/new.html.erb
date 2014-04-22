@@ -1,0 +1,13 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'fieldTypes' ) %>
+
+<% content_for :body do %>
+
+  <% if !@field_map.errors.empty? %>
+    <%= error_messages("Warning!", "There have been some errors you need to fix.", @field_map) %>
+  <% end %>
+  <%= form_for @field_map, url: {controller: 'field_map', action: 'create'}, :html => { class: "form-signin", role: "form" } do  |form|  %>
+    <%= render partial: 'form_fields', locals: {field_map: @field_map, form: form } %>
+  <% end %>
+   
+<% end %>

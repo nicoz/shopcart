@@ -79,7 +79,9 @@ class FieldTypesController < ApplicationController
   def show
     @title = 'Detalles del Tipo de campo'
     @field_type = FieldType.find(params[:id])
-       
+    
+    @lines = @field_type.lines(params).paginate(page: params[:page])
+
     render layout: 'desktop'
   end
   

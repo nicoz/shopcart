@@ -1,0 +1,56 @@
+<!-- START THE FEATURETTES -->
+
+<hr class="featurette-divider">
+
+<% books.each do |book| %>
+  <% current = book.current_version %>
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading"><%= current.value(act_as: 'principal').try(:value) %>
+        <span class="text-muted"> Libro de <%= current.value(act_as: 'secondary').try(:value) %></span>
+      </h2>
+      <p class="lead"><%= current.value(act_as: 'small_description').try(:value) %></p>
+    </div>
+    <div class="col-md-5">
+      <%= item_image(current.value(name: 'tapa'), :main) %>
+    </div>
+  </div>
+
+<% end %>
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading">El Libro de la Ley<span class="text-muted"> Libro de Aleister Crowley</span></h2>
+    <p class="lead">Liber AL vel Legis es el texto sagrado central de Thelema, escrito por Aleister Crowley en El Cairo, Egipto en el año de 1904.</p>
+  </div>
+  <div class="col-md-5">
+    <img class="featurette-image img-responsive"  alt="500x500" src="<%= asset_path 'bookoflaw.jpg' %>" style="width: 500px; height: 500px;">
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-5">
+    <img class="featurette-image img-responsive"  alt="500x500" src="<%= asset_path 'librodelossabios.jpg' %>" style="width: 500px; height: 500px;">
+  </div>
+  <div class="col-md-7">
+    <h2 class="featurette-heading">El libro de los sabios<span class="text-muted"> Libro de Eliphas Levi</span></h2>
+    <p class="lead">El libro de los sabios (Le Livre des Sages) es un libro prohibido del escritor y ocultista francés Alphonse Louis Constant, más conocido como Eliphas Levi, publicado en 1869.</p>
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading">La rama dorada <span class="text-muted"> Libro de James George Frazer.</span></h2>
+    <p class="lead">La rama dorada: un estudio sobre magia y religión es una obra de estudio comparativo de mitología y religión de gran envergadura, escrita por el antropólogo escocés James George Frazer.</p>
+  </div>
+  <div class="col-md-5">
+    <img class="featurette-image img-responsive" alt="500x500" src="<%= asset_path 'ramadorada.jpg' %>" style="width: 500px; height: 500px;">
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<!-- /END THE FEATURETTES -->

@@ -4,26 +4,32 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Clave</th>
-        <th>Valor</th>
         <th>Acciones</th>
+        <th>Version</th>
+        <th>Estado</th>
+        <th>Fecha</th>
       </tr>
     </thead>
     <tbody>
       <% lines.each do |line| %>
-        <tr>          
-          <td> 
-            <%= line.key %>
-          </td>
-          <td><%= line.value %></td>
+        <tr>
           <td>
-            <a href="<%= edit_item_item_information_path(item, line) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-            <% if line.active %>
-              <a data-confirm="Seguro que desea eliminar el servicio?" class="btn btn-default btn-default" data-method="delete" href="<%= item_item_information_path(item, line) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
-            <% else %>
-              <a data-confirm="Seguro que desea activar el servicio?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_item_item_information_path(item,line) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
+            <a href="<%= item_item_version_path(item, line) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-search"></span></a>
+            <% if line.state == 'open' %>
+              <a data-confirm="Seguro que desea cerrar la version?" class="btn btn-default btn-default" data-method="patch" href="<%= close_item_item_version_path(item,line) %>" rel="nofollow"><span class="glyphicon glyphicon-lock"></span></a>
+              <a data-confirm="Seguro que desea cancelar la version?" class="btn btn-default btn-default" data-method="delete" href="<%= item_item_version_path(item, line) %>" rel="nofollow"><span class="glyphicon glyphicon-trash"></span></a>
             <% end %>
           </td>
+          <td> 
+            <%= line.id %>
+          </td>
+          <td> 
+            <%= line.state %>
+          </td>
+          <td>
+            <%= I18n.l line.created_at, format: :short %>
+          </td>
+          
         </tr>
       <% end %>
     </tbody>

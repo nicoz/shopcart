@@ -1,0 +1,16 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'items' ) %>
+
+<% content_for :body do %>
+
+  <%= render partial: 'details', locals: { item_version: @item_version } %>
+  
+  <h1 class="page-header">Campos</h1>
+  
+  <%= render partial: 'lines_search', locals: { item_version: @item_version }%>
+  
+  <%= render partial: 'lines', locals: { lines: @lines, item_version: @item_version }%>
+    
+<% end %>
+
+

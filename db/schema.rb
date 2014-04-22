@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409194641) do
+ActiveRecord::Schema.define(version: 20140422185317) do
 
   create_table "configurations", force: true do |t|
     t.string   "application_name"
@@ -22,6 +22,27 @@ ActiveRecord::Schema.define(version: 20140409194641) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "field_maps", force: true do |t|
+    t.integer  "field_type_id"
+    t.string   "key"
+    t.string   "value"
+    t.boolean  "active",        default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "field_maps", ["field_type_id", "key"], name: "index_field_maps_on_field_type_id_and_key"
+
+  create_table "field_posibilities", force: true do |t|
+    t.integer  "field_type_id"
+    t.string   "text"
+    t.boolean  "active",        default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "field_posibilities", ["field_type_id", "text"], name: "index_field_posibilities_on_field_type_id_and_text"
 
   create_table "field_types", force: true do |t|
     t.string   "name"
@@ -51,13 +72,6 @@ ActiveRecord::Schema.define(version: 20140409194641) do
     t.datetime "updated_at"
   end
 
-  create_table "item_field_posibilities", force: true do |t|
-    t.integer  "item_field_id"
-    t.string   "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "item_field_validations", force: true do |t|
     t.integer  "item_field_id"
     t.integer  "field_validation_id"
@@ -68,40 +82,58 @@ ActiveRecord::Schema.define(version: 20140409194641) do
   create_table "item_fields", force: true do |t|
     t.string   "name"
     t.string   "label"
-    t.boolean  "searchable",    default: false
-    t.boolean  "active",        default: true
-    t.integer  "item_id"
+    t.boolean  "searchable",      default: false
+    t.boolean  "active",          default: true
     t.integer  "field_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "item_version_id"
+    t.string   "act_as",          default: "value"
+    t.integer  "weight",          default: 0
   end
 
-  add_index "item_fields", ["item_id", "id"], name: "index_item_fields_on_item_id_and_id"
+  add_index "item_fields", ["id"], name: "index_item_fields_on_item_id_and_id"
+  add_index "item_fields", ["weight"], name: "index_item_fields_on_weight"
 
-  create_table "item_instance_values", force: true do |t|
-    t.integer  "item_instance_id"
-    t.integer  "item_field_id"
+  create_table "item_instance_version_values", force: true do |t|
     t.text     "value"
+    t.integer  "item_field_id"
+    t.integer  "item_instance_version_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+  end
+
+  create_table "item_instance_versions", force: true do |t|
+    t.integer  "item_instance_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "item_instance_values", ["id", "item_instance_id", "item_field_id"], name: "value_index"
+  add_index "item_instance_versions", ["item_instance_id", "id"], name: "index_item_instance_versions_on_item_instance_id_and_id"
 
   create_table "item_instances", force: true do |t|
+    t.boolean  "active",          default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "item_version_id"
+  end
+
+  create_table "item_versions", force: true do |t|
     t.integer  "item_id"
-    t.boolean  "active"
+    t.string   "state",      default: "open"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "item_instances", ["item_id"], name: "index_item_instances_on_item_id"
+  add_index "item_versions", ["item_id", "state"], name: "index_item_versions_on_item_id_and_state"
 
   create_table "items", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",     default: true
+    t.string   "image"
   end
 
   add_index "items", ["name"], name: "index_items_on_name"

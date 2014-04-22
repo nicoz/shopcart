@@ -1,0 +1,50 @@
+<%= will_paginate lines %>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Acciones</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Actua Como</th>
+        <th>Orden</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% lines.each do |line| %>
+        <tr>
+          <td>
+            <a href="<%=  edit_item_item_version_item_field_path(item_version.item, item_version, line) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+            <% if line.active%>
+              <a data-confirm="Seguro que desea eliminar el campo?" class="btn btn-default btn-default" data-method="delete" href="<%= item_item_version_item_field_path(item_version.item, item_version, line) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
+            <% else %>
+               <a data-confirm="Seguro que desea activar el campo?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_item_item_version_item_field_path(item_version.item, item_version, line) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
+            <% end %>
+          </td>
+          <td> 
+            <%= line.name %>
+          </td>
+          <td> 
+            <%= line.field_type.name %>
+          </td>
+          <td>
+            <%= line.act_as %>
+          </td>
+          <td>
+            <%= line.weight %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate lines %>
+
+<script>
+  $("div.pagination ul").addClass('pagination');
+  
+  $('.previous_page > a').html("Previo");
+  $('.next_page > a').html("Proximo");
+</script>

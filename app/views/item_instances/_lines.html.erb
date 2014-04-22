@@ -1,0 +1,23 @@
+
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <%= raw create_table_header(fields) %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= raw create_table_body(fields, lines) %>
+    </tbody>
+  </table>
+</div>
+
+
+
+<script>
+  $("div.pagination ul").addClass('pagination');
+  
+  $('.previous_page > a').html("Previo");
+  $('.next_page > a').html("Proximo");
+</script>

@@ -1,34 +1,12 @@
 <%= will_paginate lines %>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Clave</th>
-        <th>Valor</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% lines.each do |line| %>
-        <tr>          
-          <td> 
-            <%= line.key %>
-          </td>
-          <td><%= line.value %></td>
-          <td>
-            <a href="<%= edit_service_service_information_path(service, line) %>"  class="btn btn-default btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-            <% if line.active %>
-              <a data-confirm="Seguro que desea eliminar el servicio?" class="btn btn-default btn-default" data-method="delete" href="<%= service_service_information_path(service, line) %>" rel="nofollow"><span class="glyphicon glyphicon-remove-sign"></span></a>
-            <% else %>
-              <a data-confirm="Seguro que desea activar el servicio?" class="btn btn-default btn-default" data-method="patch" href="<%= activate_service_service_information_path(service,line) %>" rel="nofollow"><span class="glyphicon glyphicon-flash"></span></a>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<% if field_type.field_type == 'list' %>
+  <%= render partial: 'lines_posibilities', locals: {field_type: field_type, lines: lines} %>
+<% end %>
+
+<% if field_type.field_type == 'map' %>
+  <%= render partial: 'lines_map', locals: {field_type: field_type, lines: lines} %>
+<% end %>
 
 <%= will_paginate lines %>
 

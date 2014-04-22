@@ -1,0 +1,31 @@
+
+
+<%= form.hidden_field :item_version_id, data: {attribute: 'item_version_id'} %>
+
+<label for="name">Nombre</label>
+<%= attribute_tag(item_field, :name, params = {form: form, placeholder: "Nombre", type: "text", class: "form-control", validations: :all}) %>
+
+<label for="label">Etiqueta</label>
+<%= attribute_tag(item_field, :label, params = {form: form, placeholder: "Etiqueta", type: "text", class: "form-control", validations: :all}) %>
+
+<label for="act_as">Actua Como</label>
+<%= form.select(:act_as, %w(principal secondary small_description long_description category subcategory price unit amount tax), {selected: item_field.act_as, include_blank: true}, class: "form-control") %>
+
+<label for="weight">Orden</label>
+<%= attribute_tag(item_field, :weight, params = {form: form, placeholder: "Orden", type: "text", class: "form-control", validations: :all}) %>
+
+<label for="field_type_id">Tipo</label>
+<%= form.select(:field_type_id, field_types.map {|field| [field.name, field.id]}, {include_blank: false}, class: "form-control") %>
+
+<div class="checkbox">
+  <label>
+    <%= form.check_box :searchable %> Buscar por este campo
+  </label>
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.submit "Confirmar", class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= render partial: '/shared/back', locals: {path: ''} %>
+</div>

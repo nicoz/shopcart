@@ -1,0 +1,29 @@
+<% provide(:title, @title ) %>
+<% provide(:active, 'products' ) %>
+
+<% content_for :body do %>
+  <div class="row featurette">
+    <div class="col-md-6">
+      <h2 class="featurette-heading"><%= @current_version.value(act_as: 'principal').try(:value) %>
+        <span class="text-muted"> Libro de <%= @current_version.value(act_as: 'secondary').try(:value) %></span>
+      </h2>
+      <p class="lead"><%= @current_version.value(act_as: 'long_description').try(:value) %></p>
+      <div class="col-md-3">
+        <%= link_to edit_product_path(@current_version.item_instance.item_version.item.name, @current_version.id), class: "btn btn-lg btn-warning",
+        id: "edit_password" do %>
+          <span class="glyphicon glyphicon-pencil"></span> Editar
+          
+        <% end %>
+      </div>
+      <%= render partial: '/shared/back', locals: {path: products_path(@current_version.item_instance.item_version.item.name)} %>
+    </div>
+    <div class="col-md-5">
+      <%= item_image(@current_version.value(name: 'tapa'), :main) %>
+    </div>
+    
+
+
+
+
+  </div>
+<% end %>
