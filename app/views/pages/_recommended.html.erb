@@ -1,23 +1,61 @@
 <!-- START THE FEATURETTES -->
 
-<hr class="featurette-divider">
+<hr>
 
+<% counter = 0 %>
 <% books.each do |book| %>
   <% current = book.current_version %>
+  <% counter += 1%>
   <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading"><%= current.value(act_as: 'principal').try(:value) %>
-        <span class="text-muted"> Libro de <%= current.value(act_as: 'secondary').try(:value) %></span>
-      </h2>
-      <p class="lead"><%= current.value(act_as: 'small_description').try(:value) %></p>
-    </div>
-    <div class="col-md-5">
-      <%= item_image(current.value(name: 'tapa'), :main) %>
-    </div>
+    <% if counter%2 != 0 %>
+      <div class="col-md-7">
+        <h2 class="featurette-heading"><%= current.value(act_as: 'principal').try(:value) %>
+          <span class="text-muted"> Libro de <%= current.value(act_as: 'secondary').try(:value) %></span>
+        
+          
+        </h2>
+        <div class='price-tag'>
+          <div class='price'>
+            <span>
+                $U <%= current.value(act_as: 'price').try(:value).to_s.delete(' ') %>
+            </span>
+          </div>
+        </div>
+        <p class="lead">
+          <%= current.value(act_as: 'small_description').try(:value) %>
+          <br />
+          <%= link_to 'Leer mas...', '#' %>
+        </p>
+
+      </div>
+      <div class="col-md-5">
+        <%= item_image(current.value(name: 'tapa'), :main) %>
+      </div>
+    <% else %>
+      <div class="col-md-5">
+        <%= item_image(current.value(name: 'tapa'), :main) %>
+      </div>
+      <div class="col-md-7">
+        <h2 class="featurette-heading"><%= current.value(act_as: 'principal').try(:value) %>
+          <span class="text-muted"> Libro de <%= current.value(act_as: 'secondary').try(:value) %></span>
+        </h2>
+        <div class='price-tag'>
+          <div class='price'>
+            <span>
+                $U <%= current.value(act_as: 'price').try(:value).to_s.delete(' ') %>
+            </span>
+          </div>
+        </div>
+        <p class="lead">
+          <%= current.value(act_as: 'small_description').try(:value) %>
+          <br />
+          <%= link_to 'Leer mas...', '#' %>
+        </p>
+      </div>
+    <% end %>
+    
   </div>
 
 <% end %>
 
-<hr class="featurette-divider">
-
-<!-- /END THE FEATURETTES -->
+<hr>

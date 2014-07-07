@@ -14,6 +14,18 @@ class ItemInstance < ActiveRecord::Base
   has_many :item_instance_versions
   
   
+  def self.search(options = {})
+    item = Item.where(name: options[:item]).first
+    max_versions = ItemInstanceVersion.joins(item_instance: {item_version: :item}).where('items.id=?', item.id).order('item_instance_versions.created_at desc').group('item_instances.id').pluck(:id)
+    
+    Rails.logger.info max_versions
+    
+    result = ItemInstance.joins(item_instance_versions: {item_instance_version_values: :item_field}).where(active: options[:inactive] != 'on').where('item_instance_versions.id in (?)', max_versions).where("item_instance_version_values.value like ?", "%#{options[:search]}%").group('item_instances.id').where('item_fields.searchable = ?', true)
+    
+    Rails.logger.info result.count
+    result
+  end
+  
   def new_version(options = {})
     item_instance_version = ItemInstanceVersion.new(item_instance_id: self.id)
     self.item_version.item_fields.each do |field|

@@ -1,7 +1,49 @@
 <!-- FOOTER -->
 <div id="footer">
-  <p class="pull-right"><a href="#">Back to top</a></p>
-  <p>© 2014 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-xs-6 col-sm-4 footer-column">
+        <h2>Categorias</h2>
+        <hr>
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Messages</a></li>
+        </ul>
+
+        
+        <h2>Generos</h2>
+        <hr>
+
+        <h2>Autores</h2>
+        <hr>
+
+      </div>
+      <div class="col-xs-6 col-sm-4 footer-column">
+        <h2>Nuevos Ingresos</h2>
+        <hr>
+        
+        <h2>Mas vendidos</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 footer-column">
+        <h2>Ultimas Noticias</h2>
+        <hr>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <h2 class="pull-right"><a href="#"><span class="glyphicon glyphicon-arrow-up"></span></a>
+</h2></p>
+        <p><%= "© #{Time.now.year} #{config.name} "%>.</p>
+      </div>
+    <div>
   
+
+</div>
+
+ 
   <%= debug(params) if Rails.env.development? %>
 </div>

@@ -48,16 +48,36 @@ body {
 /* Declare heights because of positioning of img element */
 .carousel .item {
   height: 500px;
-  background-color: #777;
+
 }
 .carousel-inner > .item > img {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
-  height: 500px;
+  /*width: 100%;*/
+  /*height: 100% !important;*/
 }
 
+.slide1 {
+  background-image: url(<%= asset_path 'magic-book1.jpeg' %>);
+  background-repeat:no-repeat;
+  background-size:inherit;
+  background-position:center;
+}
+
+.slide2 {
+  background-image: url(<%= asset_path 'magic_book2.jpg' %>);
+  background-repeat:no-repeat;
+  background-size:inherit;
+  background-position:center;
+}
+
+.slide3 {
+  background-image: url(<%= asset_path 'magic_book3.png' %>);
+  background-repeat:no-repeat;
+  background-size:inherit;
+  background-position:center;
+}
 
 
 /* MARKETING CONTENT

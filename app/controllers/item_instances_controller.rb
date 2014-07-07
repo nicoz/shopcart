@@ -5,17 +5,11 @@ class ItemInstancesController < ApplicationController
     before_action :keep_location, only: [:index, :show]
     
     def index
-      @item = Item.by_name(params[:item])
-      unless @item.nil?
-        @lines = ItemInstance.joins(item_version: :item).where('items.active=?', true).where('items.id=?', @item.id).where(active: params[:inactive] != 'on').paginate(page: params[:page])
+        @item = Item.where(name: params[:item]).first
+        @lines = ItemInstance.search(params).paginate(page: params[:page])
         
         @title = "Administracion de #{@item.name.pluralize}"
         render layout: 'desktop'
-      else
-        redirect_back_or administrators_path
-      end
-      
-      
     end
     
     def multi_index

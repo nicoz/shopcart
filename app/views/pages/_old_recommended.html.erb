@@ -2,16 +2,18 @@
 
 <hr class="featurette-divider">
 
+<% counter = 0 %>
 <% books.each do |book| %>
   <% current = book.current_version %>
+  <% counter += 1%>
   <div class="row featurette">
-    <div class="col-md-7">
+    <div class="<%= counter%2 == 0 ? 'col-md-7' : 'col-md-5' %>">
       <h2 class="featurette-heading"><%= current.value(act_as: 'principal').try(:value) %>
         <span class="text-muted"> Libro de <%= current.value(act_as: 'secondary').try(:value) %></span>
       </h2>
       <p class="lead"><%= current.value(act_as: 'small_description').try(:value) %></p>
     </div>
-    <div class="col-md-5">
+    <div class="<%= counter%2 == 0 ? 'col-md-5' : 'col-md-7' %>">
       <%= item_image(current.value(name: 'tapa'), :main) %>
     </div>
   </div>

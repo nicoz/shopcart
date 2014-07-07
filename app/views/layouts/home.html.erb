@@ -26,11 +26,8 @@
     <div class="container marketing">
       <%= render partial: "shared/flash" %>
       <%= yield %>
-    
-
-    
     </div><!-- /.container -->
-    <%= render partial: "layouts/application/footer" %>
+    <%= render partial: "layouts/application/footer", locals: {config: @configuration} %>
     
     <script>
       $(document).ready(function()    

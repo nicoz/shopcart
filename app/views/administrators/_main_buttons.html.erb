@@ -8,12 +8,14 @@
     <h4><%= link_to item.name.pluralize, products_path(item.name) %></h4>
     <span class="text-muted">Administracion de <%= item.name.pluralize %></span>
   </div>
-  <% if counter == 0 %>
+  <% if counter == 3 %>
     </div>
   <% end %>
   <% counter = counter == 3 ? 0 : counter + 1 %>
 <% end %>
-
+<% if counter < 3 %>
+  </div>
+<% end %>
 
 <div class="row placeholders">
   <div class="col-xs-6 col-sm-3 placeholder">
